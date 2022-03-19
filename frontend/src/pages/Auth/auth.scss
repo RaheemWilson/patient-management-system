@@ -1,0 +1,175 @@
+@use '../../util/styles/global' as g;
+.authContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 -4rem;
+    max-height: 100vh;
+    height: 100vh;
+}
+
+.imageContainer, .formContainer{
+    flex-grow:1;
+    flex-basis: 0;
+}
+
+.imageContainer{
+    height: 100%;
+
+    .returnHome{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin: 1rem;
+        color: #000;
+        height: 44px;
+        padding: 0 5px;
+        width: 11rem;
+        border-radius: 6px;
+
+        &:hover{
+            background-color: rgb(255, 255, 255, 0.4);
+        }
+    } 
+}
+
+// .imageContainer{
+//     background: url('../assets/signin.webp') no-repeat;
+//     background-size: cover;
+// }
+
+.signupImage{
+    background: url('../../assets/images/signUp.webp') no-repeat;
+    background-size: cover;
+}
+
+.formContainer{
+    padding: 0 4rem;
+}
+
+.formHeader{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 3rem;
+    line-height: 120%;
+
+    @media screen and (min-width:800px) and (max-width:1000px) {
+        font-size: 2.8rem;
+    }
+
+    @media screen and (max-width:800px) {
+       font-size: 36px;
+    }
+
+}
+
+.formDesc {
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 160%;
+    margin: 0.5rem 0;
+    width: 80%;
+
+    @media screen and (max-width:850px) {
+        font-size: 18px;
+        line-height: 140%;
+        width: 100%;
+    }
+}
+
+.form{
+    margin: 3rem 0 0;
+
+    div{
+        margin: 1.2rem 0 0;
+    }
+
+    input{
+        display: block;
+        height: 44px;
+        width: 80%;
+        border: 1px solid rgb(0, 0, 0, 0.2);
+        border-radius: 6px;
+        padding: 10px;
+        margin: 5px 0;
+        font-size: 16px;
+        font-weight: 200;
+    }
+
+    label{
+        font-weight: 300;
+    }
+
+    .passwordCheck{
+        font-weight: 100;
+        font-size: 12px;
+        width: 80%;
+    }
+
+    p{
+        font-size: 14px;
+        color: rgb(255, 42, 42);
+    }
+}
+
+.name{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    width: 80%;
+
+    input{
+        width: 100%;
+    }
+}
+
+
+
+.agreement{
+    p{
+        width: 80%;
+        font-size: 16px;
+        font-weight: 100;
+        line-height: 160%;
+        margin: 0.75rem 0;
+    }
+
+    a{
+        color: #3d71e3;;
+    }
+}
+
+.button{
+    width: 80%;
+    height: 44px;
+    color: #fff;
+    background-color: g.$light-blue;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    margin: 1.5rem 0 0;
+    border: none;
+
+    &:disabled{
+        background-color: rgb(0, 0, 0, 0.2);
+    }
+}
+
+
+.ref{
+    color: #3d71e3;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.signUpOption{
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 160%;
+    margin: 0.75rem 0;
+}
+
+
+

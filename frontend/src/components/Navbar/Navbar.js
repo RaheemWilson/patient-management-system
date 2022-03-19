@@ -19,7 +19,7 @@ export default function Navbar() {
                         <Link to="create-appointment">Book an appointment</Link>
                     </li>
                     <li className="navOption">
-                        <Link to="auth/signup" className="btn">Sign up</Link>
+                        <Link to="/auth/signup" className="btn">Sign up</Link>
                     </li>
                 </ul>
             </nav>
