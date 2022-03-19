@@ -1,0 +1,14 @@
+{
+  "name": "pms-backenf",
+  "version": "1.0.0",
+  "description": "Patient Management System - Backend ",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Raheem Wilson",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
