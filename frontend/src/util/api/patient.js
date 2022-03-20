@@ -21,7 +21,6 @@ export const createPatient = async (data) => {
 export const loginPatient = async (data) => {
 
     let { email, password } = data
-    console.log(email, password)
 
     let res = await fetch(`${URL}/auth/patient/login`, {
         method: "POST",
@@ -30,5 +29,17 @@ export const loginPatient = async (data) => {
         },
         body: JSON.stringify({ email: email, password: password })
     })
-    return res.status === 200 ? await res.json() : {}
+    return res.status === 200 ? await res.json() : null
+}
+
+export const updateProfile = async (data, token) => {
+    let res = await fetch(`${URL}/patient/update`, {
+        method: "PUT",
+        headers: {
+            'Content-type': 'application/json',
+            "Authorization": "Bearer " + token,
+        },
+        body: JSON.stringify(data)
+    })
+    return res.status === 200 ? await res.json() : null
 }

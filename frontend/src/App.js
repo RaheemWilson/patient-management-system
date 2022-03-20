@@ -11,6 +11,7 @@ import Signup from "./pages/Auth/Signup";
 import SessionProvider from "./provider/SessionProvider";
 import Login from "./pages/Auth/Login";
 import Dashboard from "./pages/Dashboard/PatientDashboard";
+import Profile from "./pages/Profile/PatientProfile";
 
 function App() {
   return (
@@ -20,7 +21,10 @@ function App() {
             <Route path="/" element={<Layout/>}>
               <Route path="/" index element={<Home/>} />
               <Route path="/" element={<ProtectedRoutes/>}>
-                  <Route path="dashboard" element={ <Dashboard/> } />
+                  <Route path="patient">
+                    <Route path="dashboard" element={ <Dashboard/> } />
+                    <Route path="profile" element={ <Profile/> } />
+                  </Route>
               </Route>
             </Route>
             <Route path="/" element={<PublicRoutes/>}>

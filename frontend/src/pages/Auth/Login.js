@@ -21,7 +21,7 @@ export default function Login() {
     
         if(res){
             setSession({...res, auth: true})
-            navigate("/dashboard")
+            navigate(`${res.user.isUpdated? "/patient/dashboard" : "/patient/profile"}`)
         } else {
             setError(true)
         }
