@@ -1,17 +1,36 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import backArrow from '../../assets/icons/arrow_back.svg'
+import { createPatient } from '../../util/api/patient'
 import './auth.scss'
 
+
 export default function Signup() {
+    const [passwordCheck, setPasswordCheck] = useState(false)
+    const [error, setError] = useState(false)
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm();
+    const navigate = useNavigate()
 
-    const onSubmit = (data) => {
-        console.log(JSON.stringify(data));
+    const onSubmit =  async (data) => {
+        if(data.password !== data.cpassword){
+            setPasswordCheck(true)
+        } else {
+            let res = await createPatient(data)
+    
+            if(res){
+                navigate("/auth/login")
+            } else {
+                setError(true)
+            }
+
+        }
+    
+
     };
     return (
         <div className='authContainer'>
@@ -24,6 +43,7 @@ export default function Signup() {
             <div className='formContainer'>
                 <h1 className='formHeader'>Welcome</h1>
                 <p className='formDesc'>Signup to book an appointment on consulto.</p>
+                { error && <p className='error'>There is an error in creating your account please try again</p> }
                 <div className='form'>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className='name'>
@@ -98,6 +118,7 @@ export default function Signup() {
                                 }
                             />
                             { errors?.cpassword?.type === "required" && <p>This field is required.</p>}  
+                            { passwordCheck && <p>Passwords do not match</p> }
                         </div>
                         <button  className='button' type="submit">Sign up</button>
                     </form>

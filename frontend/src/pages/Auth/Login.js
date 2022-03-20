@@ -1,17 +1,30 @@
+import { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import backArrow from '../../assets/icons/arrow_back.svg'
+import SessionContext from '../../provider/SessionContext'
+import { loginPatient } from '../../util/api/patient'
 import './auth.scss'
 
 export default function Login() {
+    const [error, setError] = useState(false)
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm();
+    const { setSession } = useContext(SessionContext)
 
-    const onSubmit = (data) => {
-        console.log(JSON.stringify(data));
+    const onSubmit = async (data) => {
+        let res = await loginPatient(data)
+    
+        if(res){
+            setSession({...res, auth: true})
+            navigate("/dashboard")
+        } else {
+            setError(true)
+        }
     };
     return (
         <div className='authContainer'>
@@ -24,6 +37,7 @@ export default function Login() {
             <div className='formContainer'>
                 <h1 className='formHeader'>Welcome back</h1>
                 <p className='formDesc'>Sign in to continue use consulto.</p>
+                { error && <p className='error'>There is an error in authenticating your credentials, please try again.</p> }
                 <div className='form'>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div>

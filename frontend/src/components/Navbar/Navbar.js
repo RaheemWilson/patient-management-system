@@ -1,8 +1,11 @@
+import { useContext } from "react"
 import { Link } from "react-router-dom"
+import SessionContext from "../../provider/SessionContext"
+import Dropdown from "./Dropdown"
 import './navbar.scss'
 
-
 export default function Navbar() {
+    const { session } = useContext(SessionContext)
     return (
         <header className="header">
             <nav className="navBar">
@@ -16,11 +19,17 @@ export default function Navbar() {
                         <Link to="about">About Us</Link>
                     </li>
                     <li className="navOption apt">
-                        <Link to="create-appointment">Book an appointment</Link>
+                        <Link 
+                            to={`${ session?.auth ? "/create-appointment": "/auth/login"}`}
+                        >Book an appointment</Link>
                     </li>
-                    <li className="navOption">
-                        <Link to="/auth/signup" className="btn">Sign up</Link>
-                    </li>
+                    {
+                        session?.auth ? <Dropdown/> : (
+                            <li className="navOption">
+                                <Link to="/auth/signup" className="btn">Sign up</Link>
+                            </li>
+                        )
+                    }
                 </ul>
             </nav>
         </header>
