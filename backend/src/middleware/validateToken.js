@@ -1,7 +1,7 @@
 import jwtUtil from './../utils/jwt'
 
 // This function is used to check if a jwt is valid (if send) as well as decode it
-exports.jwtCheck = (req, res, next) => {
+const jwtCheck = (req, res, next) => {
     if (!req.headers.authorization)
         res.status(401).json({ message: "No User Token Found In Request" })
     else {
@@ -17,3 +17,5 @@ exports.jwtCheck = (req, res, next) => {
         })
     }
 }
+
+export default jwtCheck;
