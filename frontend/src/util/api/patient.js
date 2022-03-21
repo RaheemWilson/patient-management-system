@@ -32,8 +32,8 @@ export const loginPatient = async (data) => {
     return res.status === 200 ? await res.json() : null
 }
 
-export const updateProfile = async (data, token) => {
-    let res = await fetch(`${URL}/patient/update`, {
+export const updateProfile = async (data, token, id) => {
+    let res = await fetch(`${URL}/patient/update/${id}`, {
         method: "PUT",
         headers: {
             'Content-type': 'application/json',
@@ -42,4 +42,16 @@ export const updateProfile = async (data, token) => {
         body: JSON.stringify(data)
     })
     return res.status === 200 ? await res.json() : null
+}
+
+export const deleteAccount = async (id, token) => {
+    let res = await fetch(`${URL}/patient/${id}`, {
+        method: "DELETE",
+        headers: {
+            'Content-type': 'application/json',
+            "Authorization": "Bearer " + token,
+        },
+    })
+
+    return res.status === 200
 }

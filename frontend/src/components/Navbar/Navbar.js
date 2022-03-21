@@ -15,6 +15,13 @@ export default function Navbar() {
                     </Link>
                 </div>
                 <ul className="navOptions">
+                    {
+                        session?.auth ? (
+                            <li className="navOption">
+                                <Link to="/patient/dashboard">Dashboard</Link>
+                            </li>
+                        ) : <></>
+                    }
                     <li className="navOption">
                         <Link to="about">About Us</Link>
                     </li>

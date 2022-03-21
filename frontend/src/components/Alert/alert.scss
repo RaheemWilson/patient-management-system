@@ -1,0 +1,32 @@
+.alert-container{
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    top: 12%;
+    z-index: 10;
+}
+
+.alert{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+    background: #fff;
+    border-left: 4px solid #03A66B;
+    box-shadow:  0px 4px 64px rgba($color: #13173d, $alpha: 0.1);
+    padding: 0.25rem 0;
+
+
+    img{
+        width: 36px;
+        height: 36px;
+    }
+
+    p{
+        margin-right: 10px;
+    }
+}

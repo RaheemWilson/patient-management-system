@@ -144,16 +144,12 @@
 }
 
 .button{
-    width: 80%;
     height: 44px;
+    width: 100%;
     color: #fff;
     background-color: g.$light-blue;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 6px;
-    margin: 1.5rem 0 0;
-    border: none;
-
+    @include g.btn;
+    
     &:disabled{
         background-color: rgb(0, 0, 0, 0.2);
     }

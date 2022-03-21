@@ -1,2 +1,11 @@
 $light-blue: #0466C8;
 $dark-blue: #0353A4;
+$red: rgb(255, 42, 42);
+
+@mixin btn{
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    border: none;
+    margin: 1.5rem 0 0;
+}

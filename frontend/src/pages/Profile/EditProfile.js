@@ -5,15 +5,16 @@ import { updateProfile } from "../../util/api/patient"
 
 function EditProfile() {
     const { session, setSession } = useContext(SessionContext)
-    const [userDetails, setUserDetails] = useState({...session?.user})
+    // const [userDetails, setUserDetails] = useState({...session?.user})
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm({ defaultValues: {...session?.user}});
 
+
     const onSubmit = async (data) => {
-       let res = await updateProfile(data, session?.authToken)
+       let res = await updateProfile(data, session?.authToken, session?.user?._id)
 
        if(res){
            setSession({...session, user: {...res.user}})
@@ -21,14 +22,13 @@ function EditProfile() {
            console.log("Not updated")
        }
 
-       console.log(res)
     }
 
     return (
         <div>
             <h1>{ session.user.isUpdated ? "Personal details" : "Please complete your profile"}</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                 <div className='name'>
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
+                 <div className='inline'>
                     <div>
                         <label htmlFor="firstName">First name</label>
                         <input 
@@ -74,7 +74,13 @@ function EditProfile() {
                 <div>
                     <label htmlFor="gender">Gender</label>
                     <select {...register("gender", { required: true })}>
-                        <option value="" defaultValue="Choose your gender" disabled hidden>Choose your gender</option>
+                        <option 
+                            value="" 
+                            defaultValue="Choose your gender" 
+                            disabled 
+                            hidden
+                        > Choose your gender
+                        </option>
                         <option value="female">Female</option>
                         <option value="male">Male</option>
                         <option value="other">Other</option>
@@ -82,35 +88,34 @@ function EditProfile() {
                     {errors?.gender?.type === "required" && <p>This field is required.</p>}
                 </div>
                 <div>
-                    <div>
-                        <label htmlFor="telephone">Telephone Number</label>
-                        <input 
-                            type="tel" 
-                            {
-                                ...register('telephone', { 
-                                    required: true, 
-                                    
-                                })
-                            } 
-                        />
-                        {errors?.telephone?.type === "required" && <p>This field is required.</p>}
-                    </div>
-                    <div>
-                        <label htmlFor="age">Age</label>
-                        <input 
-                            type="number" 
-                            {
-                                ...register('age', { 
-                                    required: true, 
-                                    min: 1, max: 130
-                                    
-                                })
-                            } 
-                        />
-                        {errors?.age?.type === "required" && <p>This field is required.</p>}
-                    </div>
+                    <label htmlFor="telephone">Telephone Number</label>
+                    <input 
+                        type="tel" 
+                        {
+                            ...register('telephone', { 
+                                required: true, 
+                                
+                            })
+                        } 
+                    />
+                    {errors?.telephone?.type === "required" && <p>This field is required.</p>}
                 </div>
                 <div>
+                    <label htmlFor="age">Age</label>
+                    <input 
+                        type="number" 
+                        {
+                            ...register('age', { 
+                                required: true, 
+                                min: 1, max: 130
+                                
+                            })
+                        } 
+                    />
+                    {errors?.age?.type === "required" && <p>This field is required.</p>}
+                </div>
+                
+                <div  className='inline'>
                     <div>
                         <label htmlFor="height">Height</label>
                         <input 
@@ -154,7 +159,7 @@ function EditProfile() {
                     />
                     {errors?.commordities?.type === "required" && <p>This field is required.</p>}
                 </div>
-                <button type="submit">Update profile</button>
+                <button type="submit" className="update-btn">Update profile</button>
             </form>
         </div>
     );

@@ -1,0 +1,89 @@
+@use '../../util/styles/global' as g;
+
+.profile-container{
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 3rem;
+}
+
+.opts-container{
+    width: 10rem;
+}
+
+.profile-options{
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba($color: #000, $alpha: 0.2);
+    li{
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+        margin: 5px 0;
+        padding: 0.25rem 0.5rem 0.25rem;
+        cursor: pointer;
+
+        &:hover{
+            background-color: rgba($color: g.$light-blue, $alpha: 0.2);
+        }
+    }
+}
+
+.form{
+    margin: 1rem 0 0;
+
+    div{
+        margin: 1.2rem 0 0;
+    }
+
+    input, select{
+        display: block;
+        height: 44px;
+        width: 100%;
+        border: 1px solid rgb(0, 0, 0, 0.2);
+        border-radius: 6px;
+        padding: 10px;
+        margin: 5px 0;
+        font-size: 16px;
+        font-weight: 200;
+    }
+
+    label{
+        font-weight: 300;
+    }
+
+
+    p{
+        font-size: 14px;
+        color: rgb(255, 42, 42);
+    }
+
+    .inline{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 10px;
+    }
+
+    .update-btn{
+        @include g.btn;
+        padding: 16px 32px;
+        background-color: g.$light-blue;
+        color: #fff;
+        cursor: pointer;
+    }
+}
+
+
+.delete-warning{
+    margin-top: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgba($color: #000, $alpha: 0.2);
+
+    button{
+        @include g.btn;
+        background: none;
+        border: 1px solid rgb(255, 42, 42);
+        color: rgb(255, 42, 42);
+        padding: 12px 28px;
+        cursor: pointer;
+    }
+}
