@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from "bcrypt";
 
-const PatientSchema = new Schema({
+const DoctorSchema = new Schema({
     firstName:{
         type: String,
         required: true
@@ -17,51 +17,24 @@ const PatientSchema = new Schema({
     email: {
         type: String,
         required: true
-    },
-    ip_address: {
-        type: String,
-        requred: true,
-    },
-    gender: {
-        type: String,
-        default: ""
-    },
-    commordities: {
-        type: String,
-        default: "Not applicable"
-    },
+    }, 
     telephone: {
         type: String,
         default: "xxx-xxxx"
-    },
-    age:{
-        type: Number,
-        default: 0
-    },
-    height:{
-        type: Number,
-        default: 0
-    },
-    weight:{
-        type: Number,
-        default: 0
-    },
-    isUpdated:{
-        type: Boolean,
-        default: false
     }
 })
 
+
 // Prehook to Hash and Salt Password before saving
-PatientSchema.pre("save", async function () {
+DoctorSchema.pre("save", async function () {
     // Create the password hash
     if (this.isModified("password")) {
       const salt = await bcrypt.genSalt();
       const passwordHash = await bcrypt.hash(this.password, salt);
       this.password = passwordHash;
     }
-  });
+});
 
-const Patient = mongoose.model("patients", PatientSchema)
+const Doctor = mongoose.model("doctors", DoctorSchema)
 
-export default Patient;
+export default Doctor;

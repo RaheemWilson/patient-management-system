@@ -4,6 +4,11 @@ const jwtUtil = require('../../../utils/jwt')
 const { default: Patient } = require("../../../db/models/Patient")
 
 
+/**
+ * Adds patient to the database
+ * @param {*} req 
+ * @param {*} res 
+ */
 export const createPatient = (req, res) => {
 
     try {
@@ -39,10 +44,15 @@ export const createPatient = (req, res) => {
     } catch (error) {
         res.sendStatus(500);
     }
-
-
 }
 
+
+/**
+ * Authenticate login credentials for patients
+ * @param {*} req 
+ * @param {*} res 
+ * @returns Patient details
+ */
 export const loginPatient = async (req, res) => {
 
     try {

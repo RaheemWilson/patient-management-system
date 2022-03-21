@@ -3,6 +3,7 @@ import { createPatient, loginPatient } from '../controllers/patient/auth.control
 
 const router = express.Router()
 
+// Register auth routes
 router.post("/patient/create", createPatient)
 router.post("/patient/login", loginPatient)
 

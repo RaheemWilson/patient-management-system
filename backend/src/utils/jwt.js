@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken'
 
 const secret = process.env.SECRET_KEY || "Damn, that's what 19##*@( expected"
 
+//JWT methods to create, decode and validate a token
+
 exports.createToken = (payload) => {
     return jwt.sign(payload,secret)
 }
