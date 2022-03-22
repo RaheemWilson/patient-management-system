@@ -1,5 +1,6 @@
 import express from 'express';
 import jwtCheck from '../../middleware/validateToken';
+import { createAppointment } from '../controllers/patient/appointment.controller';
 import { updateProfile, deleteAccount } from '../controllers/patient/patient.controller';
 const router = express.Router()
 
@@ -7,6 +8,7 @@ const router = express.Router()
 router.use(jwtCheck)
 
 // Register patient routes
+router.post("/appointment", createAppointment)
 router.put("/update/:id", updateProfile)
 router.delete("/:id", deleteAccount)
 
