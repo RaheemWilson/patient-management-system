@@ -1,0 +1,29 @@
+@use '../../util/styles/global' as g;
+
+.aptHeader{
+    margin: 12px 0
+}
+
+.aptDesc{
+    width: 60%;
+    line-height: 24px;
+}
+
+.appointmentForm{
+    @include g.form;
+    input, select, textarea{
+        width: 60%;
+    }
+
+    textarea{
+        height: 72px;
+    }
+
+    button{
+        @include g.btn;
+        padding: 12px 28px;
+        background-color: g.$light-blue;
+        color: #fff;
+        cursor: pointer;
+    }
+}

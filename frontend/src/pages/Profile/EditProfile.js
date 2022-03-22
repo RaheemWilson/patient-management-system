@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { useForm } from 'react-hook-form'
 import SessionContext from "../../provider/SessionContext"
 import { updateProfile } from "../../util/api/patient"

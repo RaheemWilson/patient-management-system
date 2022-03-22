@@ -27,7 +27,7 @@ export default function Navbar() {
                     </li>
                     <li className="navOption apt">
                         <Link 
-                            to={`${ session?.auth ? "/create-appointment": "/auth/login"}`}
+                            to={`${ session?.auth ? "/patient/create-appointment": "/auth/login"}`}
                         >Book an appointment</Link>
                     </li>
                     {

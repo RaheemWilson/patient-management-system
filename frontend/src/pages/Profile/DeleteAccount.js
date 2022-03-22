@@ -3,7 +3,7 @@ import { useContext, useState } from "react"
 import SessionContext from "../../provider/SessionContext"
 import { useNavigate } from "react-router-dom"
 import { deleteAccount } from '../../util/api/patient';
-import { Alert } from '../../components/Alert/Alert';
+// import { Alert } from '../../components/Alert/Alert';
 
 function DeleteAccount() {
     const { session, setSession } = useContext(SessionContext)
@@ -21,7 +21,7 @@ function DeleteAccount() {
     }
     return (
         <div>
-            <Alert></Alert>
+            {/* <Alert></Alert> */}
             <h1 className='delete-header'>Delete Account</h1>
             <div className='delete-warning'>
                 <p>Once you delete your account, there is no going back. Please be certain.</p>
