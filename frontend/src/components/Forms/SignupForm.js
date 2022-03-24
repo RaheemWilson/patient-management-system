@@ -2,34 +2,48 @@ import React from 'react';
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
+import { createDoctor } from '../../util/api/doctor';
 import { createPatient } from '../../util/api/patient';
+import { info } from '../AntComponents/Modal';
+import { successfulSignUp } from '../AntComponents/Notification';
 
-function SignupForm() {
+function SignupForm({ isPatient }) {
     const [passwordCheck, setPasswordCheck] = useState(false)
     const [error, setError] = useState(false)
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm();
+    } = useForm({ defaultValues: { isPatient: isPatient }});
+    
     const navigate = useNavigate()
 
     const onSubmit =  async (data) => {
         if(data.password !== data.cpassword){
             setPasswordCheck(true)
         } else {
-            let res = await createPatient(data)
-    
-            if(res){
-                navigate("/auth/login")
+            if(isPatient){
+                let res = await createPatient(data)
+                if(res){
+                    successfulSignUp()
+                    navigate("/auth/login?user=patient")
+                } else {
+                    setError(true)
+                }
             } else {
-                setError(true)
+                let res = await createDoctor(data)
+        
+                if(res){
+                    info(res.doctorId)
+                    navigate("/auth/login?user=doctor")
+                } else {
+                    setError(true)
+                }
             }
 
         }
-    
-
     };
+
     return (
         <div className='form'>
             { error && <p className='error'>There is an error in creating your account please try again</p> }
@@ -76,6 +90,20 @@ function SignupForm() {
                     />
                     {errors?.email?.type === "required" && <p>This field is required.</p>}
                 </div>
+                { !isPatient && (
+                    <div>
+                        <label htmlFor="telephone">Telephone</label>
+                        <input 
+                            type="tel" 
+                            {
+                                ...register('telephone', { 
+                                    required: true, 
+                                })
+                            } 
+                        />
+                        {errors?.telephone?.type === "required" && <p>This field is required.</p>}
+                    </div>
+                )}
                 <div>
                     <label htmlFor="password">Password</label>
                     <input 
@@ -112,7 +140,9 @@ function SignupForm() {
             </form>
             <div className='signUpOption'>
                 {`Already have an account? `} 
-                <Link to="/auth/login" className='ref'>
+                <Link to={{ 
+                    pathname: `/auth/login?user=${isPatient?"patient":"doctor"}`,
+                }} className='ref'>
                     Login
                 </Link> 
                 {` instead`}

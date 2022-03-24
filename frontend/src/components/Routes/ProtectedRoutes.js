@@ -5,7 +5,7 @@ import SessionContext from '../../provider/SessionContext'
 const  ProtectedRoutes = (props) =>{
     const { session } = useContext(SessionContext)
 
-    return session ? <Outlet/> : <Navigate to="/auth/login"/>
+    return session ? <Outlet/> : <Navigate to="/auth/login?user=patient"/>
 }
 	
 export default ProtectedRoutes;

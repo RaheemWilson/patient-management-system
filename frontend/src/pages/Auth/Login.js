@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import backArrow from '../../assets/icons/arrow_back.svg'
 import LoginForm from '../../components/Forms/LoginForm'
+import useQuery from '../../hooks/query'
 import './auth.scss'
-
 export default function Login() {
+    const query = useQuery();
     return (
         <div className='authContainer'>
             <div className='imageContainer signupImage'>
@@ -15,7 +16,7 @@ export default function Login() {
             <div className='formContainer'>
                 <h1 className='formHeader'>Welcome back</h1>
                 <p className='formDesc'>Sign in to continue use consulto.</p>
-                <LoginForm />
+                <LoginForm isPatient={query.get("user") === "patient"}/>
             </div>
         </div>
     )

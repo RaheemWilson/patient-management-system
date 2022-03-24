@@ -23,19 +23,11 @@ function AppointmentForm() {
             setError(false)
             navigate("/patient/dashboard")
         } else {
+            console.log(res)
             setError(true)
         }
 
     };
-
-    // useEffect(() => {
-      
-    
-    //   return () => {
-    //     second
-    //   }
-    // }, [third])
-    
 
     return (
         <div className='appointmentForm'>

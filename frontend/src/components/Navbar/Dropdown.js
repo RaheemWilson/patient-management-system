@@ -11,7 +11,7 @@ export default function Dropdown() {
 
     const handleSignOut = () => {
         setSession(null)
-        navigate("/auth/login")
+        navigate(`/auth/login?user=${session.userType === "patient"? "patient": "doctor"}`)
     }
 
     return (

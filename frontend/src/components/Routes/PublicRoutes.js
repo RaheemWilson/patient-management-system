@@ -5,7 +5,15 @@ import SessionContext from '../../provider/SessionContext'
 const  PublicRoutes = (props) =>{
     const { session } = useContext(SessionContext)
 
-    return session ? <Navigate to="/patient/dashboard"/> : <Outlet />
+    if(session){
+        if(session.userType === "patient"){
+            return <Navigate to="/patient/dashboard"/>
+        } else{
+            return <Navigate to="/doctor/dashboard"/>
+        }
+    } else {
+        return <Outlet />
+    }
 }
 	
 export default PublicRoutes;

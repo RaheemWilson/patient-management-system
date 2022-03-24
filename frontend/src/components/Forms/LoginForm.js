@@ -4,23 +4,32 @@ import { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import SessionContext from '../../provider/SessionContext'
+import { loginDoctor } from '../../util/api/doctor';
+// import { success } from '../AntComponents/Notification';
+// import "antd/dist/antd.less";
 
-function LoginForm() {
+function LoginForm({ isPatient }) {
     const [error, setError] = useState(false)
     const navigate = useNavigate()
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm();
+    } = useForm({ defaultValues: { isPatient: isPatient }});
+
     const { setSession } = useContext(SessionContext)
 
     const onSubmit = async (data) => {
-        let res = await loginPatient(data)
+       let res = isPatient ? await loginPatient(data) : await loginDoctor(data)
     
         if(res){
             setSession({...res, auth: true})
-            navigate(`${res.user.isUpdated? "/patient/dashboard" : "/patient/profile"}`)
+            // success()
+            if(res.userType === "patient")
+                navigate(`${res.user.isUpdated? "/patient/dashboard" : "/patient/profile"}`)
+            else{
+                navigate(`/doctor/dashboard`)
+            }
         } else {
             setError(true)
         }
@@ -30,18 +39,36 @@ function LoginForm() {
         <div className='form'>
             { error && <p className='error'>There is an error in authenticating your credentials, please try again.</p> }
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input 
-                        type="email" 
-                        {
-                            ...register('email', { 
-                                required: true, 
-                            })
-                        } 
-                    />
-                    {errors?.email?.type === "required" && <p>This field is required.</p>}
-                </div>
+                { isPatient && (
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input 
+                            type="email" 
+                            {
+                                ...register('email', { 
+                                    required: true, 
+                                })
+                            } 
+                        />
+                        {errors?.email?.type === "required" && <p>This field is required.</p>}
+                    </div>
+                )}
+                {
+                    !isPatient && (
+                        <div>
+                            <label htmlFor="doctorId">Doctor's ID</label>
+                            <input 
+                                type="text" 
+                                {
+                                    ...register('doctorId', { 
+                                        required: true, 
+                                    })
+                                } 
+                            />
+                            {errors?.doctorId?.type === "required" && <p>This field is required.</p>}
+                        </div>
+                    )
+                }
                 <div>
                     <label htmlFor="password">Password</label>
                     <input 
@@ -59,7 +86,9 @@ function LoginForm() {
             </form>
             <div className='signUpOption'>
                 {`Don't have an account? `} 
-                <Link to="/auth/signup" className='ref'>
+                <Link to={{ 
+                    pathname: `/auth/signup?user=${isPatient?"patient":"doctor"}`,
+                }} className='ref'>
                     Sign up
                 </Link> 
                 {` here.`}

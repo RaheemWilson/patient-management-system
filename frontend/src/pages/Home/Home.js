@@ -11,8 +11,8 @@ export default function Home() {
                     our principal capital asset for a good future.
                 </p>
                 <div className="links">
-                    <Link to="/auth/login" className="btn"> Book an appointment</Link>
-                    <Link to="/auth/signup">Sign up today</Link>
+                    <Link to="/auth/login?user=patient" className="btn"> Book an appointment</Link>
+                    <Link to="/auth/signup?user=patient">Sign up today</Link>
                 </div>
             </div>
         </div>
