@@ -21,6 +21,10 @@ const DoctorSchema = new Schema({
     telephone: {
         type: String,
         default: "xxx-xxxx"
+    },
+    doctorId: {
+        type: String,
+        required: true
     }
 })
 

@@ -21,7 +21,7 @@ const AppointmentSchema = new Schema({
     },
     isApproved: {
         type: String,
-        default: true
+        default: null
     }
 })
 

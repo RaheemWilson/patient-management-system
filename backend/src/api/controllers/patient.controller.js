@@ -1,4 +1,4 @@
-const { default: Patient } = require("../../../db/models/Patient")
+const { default: Patient } = require("../../db/models/Patient")
 
 /**
  * Updates Patient's profile details
