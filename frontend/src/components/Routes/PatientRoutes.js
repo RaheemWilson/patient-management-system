@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import SessionContext from '../../provider/SessionContext'
 
-function DoctorRoutes(props) {
+
+function PatientRoutes(props) {
     const { session } = useContext(SessionContext)
-    return session && session?.userType === "doctor" ? <Outlet/> : <Navigate to="/auth/login?user=patient"/>
+    return session && session?.userType === "patient" ? <Outlet/> : <Navigate to="/auth/login?user=patient"/>
 }
 
-export default DoctorRoutes;
-
+export default PatientRoutes; 

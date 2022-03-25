@@ -1,5 +1,5 @@
 import { Modal } from 'antd';
-import "antd/dist/antd.less";
+// import 'antd/es/modal/style/index.css'
 
 export const info = (id) => {
     Modal.info({

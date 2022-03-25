@@ -1,44 +1,49 @@
+import { useEffect, useState } from 'react';
 import Appointment from './Appointment';
+import './appointment.scss'
 
 function PatientAppointments({ appointments }) {
     let now = Date.parse(new Date())
+    const [pastAppointments, setPastAppointments] = useState([])
+    const [upcomingAppointments, setUpcomingAppointments] = useState([])
 
-    let pastAppointments = []
-    let upcomingAppointments = []
-
-    (() => {
+    useEffect(() => {
         appointments.forEach(appointment => {
             if(appointment.dateTime > now){
-                upcomingAppointments.push(appointment)
+                setUpcomingAppointments(prev => [...prev, appointment])
             } else {
-                pastAppointments.push(appointment)
+                setPastAppointments(prev => [...prev, appointment])
             }
         });
-    })()
+    }, [])
+    
     
     return (
         <div>
-            <div>
+            <div className='appointments-container'>
                 <h2>Upcoming appointments</h2>
-                <div>
+                <div className='appointments-grid'>
                     {
-                        upcomingAppointments.map(appointment => {
-                            return (
-                                <Appointment details={appointment} time={"upcoming"}/>
-                            )
-                        })
+                        upcomingAppointments.length > 0 ? (
+                            upcomingAppointments.map((appointment, index) => {
+                                return (
+                                    <Appointment details={appointment} time={"upcoming"} key={index}/>
+                            )})
+                        ) : <></>
                     }
                 </div>
             </div>
-            <div>
+            <div className='appointments-container'>
                 <h2>Past appointments</h2>
-                <div>
+                <div className='appointments-grid'>
                     {
-                        pastAppointments.map(appointment => {
-                            return (
-                                <Appointment details={appointment} time={"past"}/>
-                            )
-                        })
+                        pastAppointments.length > 0 ? (
+                            pastAppointments.map((appointment, index) => {
+                                return (
+                                    <Appointment details={appointment} time={"past"} key={index}/>
+                                )
+                            })
+                        ) : <></>
                     }
                 </div>
             </div>

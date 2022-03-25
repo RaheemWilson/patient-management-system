@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import PublicRoutes from "./components/Routes/PublicRoutes";
-import ProtectedRoutes from "./components/Routes/ProtectedRoutes";
 import Home from "./pages/Home/Home";
 import Signup from "./pages/Auth/Signup";
 import SessionProvider from "./provider/SessionProvider";
@@ -13,7 +12,10 @@ import Login from "./pages/Auth/Login";
 import Dashboard from "./pages/Dashboard/PatientDashboard";
 import Profile from "./pages/Profile/PatientProfile";
 import Appointment from "./pages/Appointment/Appointment";
-
+import DoctorDashboard from "./pages/Dashboard/DoctorDashboard";
+import PatientRoutes from "./components/Routes/PatientRoutes";
+import DoctorRoutes from "./components/Routes/DoctorRoutes";
+import "antd/dist/antd.less";
 
 function App() {
   return (
@@ -22,15 +24,17 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout/>}>
               <Route path="/" index element={<Home/>} />
-              <Route path="/" element={<ProtectedRoutes/>}>
+              <Route path="/" element={<PatientRoutes/>}>
                   <Route path="patient">
                     <Route path="dashboard" element={ <Dashboard/> } />
                     <Route path="profile" element={ <Profile/> } />
                     <Route path="create-appointment" element={ <Appointment/> } />
                   </Route>
-                  <Route path='doctor'>
-                    <Route path='dashboard'/>
-                  </Route>
+              </Route>
+              <Route path="/" element={<DoctorRoutes/>}>
+                <Route path='doctor'>
+                  <Route path='dashboard' element={ <DoctorDashboard/> }/>
+                </Route>
               </Route>
             </Route>
             <Route path="/" element={<PublicRoutes/>}>

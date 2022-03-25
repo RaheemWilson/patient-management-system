@@ -7,7 +7,7 @@ import DeleteAccount from "./DeleteAccount"
 import './profile.scss'
 
 export default function Profile(){
-    const { session, useSession } = useContext(SessionContext)
+    const { session } = useContext(SessionContext)
     const [active, setActive] = useState("profile")
     let userName = session?.user?.firstName+" "+session?.user?.lastName 
 

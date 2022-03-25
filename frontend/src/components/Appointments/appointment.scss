@@ -1,0 +1,71 @@
+@use '../../util/styles/global' as g;
+.appointments-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.appointments-container{
+    margin: 18px 0;
+
+    h2{
+        font-weight: 500;
+        color: g.$light-blue;
+    }
+}
+
+.appointment-card{
+    border: 1px solid #979DAC;
+    border-radius: 8px;
+    padding: 1rem;
+
+    h3{
+        padding: 12px 0;
+        border-bottom: 1px solid #979DAC;
+    }
+
+    p{
+        margin-top: 8px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .reason{
+        color: #979DAC;
+        margin: 12px 0;
+    }
+
+    .status{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 8px 0;
+    }
+
+    .indicator{
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+    }
+
+    .Pending{
+        background-color:#ffcc00;
+    }
+
+    .Declined{
+        background-color: #cc3300;
+    }
+
+    .Approved{
+        background-color:#339900;
+    }
+
+}
+
+.appointment-date{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

@@ -6,6 +6,7 @@ import { createDoctor } from '../../util/api/doctor';
 import { createPatient } from '../../util/api/patient';
 import { info } from '../AntComponents/Modal';
 import { successfulSignUp } from '../AntComponents/Notification';
+// import "antd/dist/antd.less";
 
 function SignupForm({ isPatient }) {
     const [passwordCheck, setPasswordCheck] = useState(false)

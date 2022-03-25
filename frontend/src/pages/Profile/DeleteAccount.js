@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import SessionContext from "../../provider/SessionContext"
 import { useNavigate } from "react-router-dom"
 import { deleteAccount } from '../../util/api/patient';

@@ -10,18 +10,18 @@ function Appointment({ details, time }) {
         minute: 'numeric',
         hour12: true
     })
-    const status = details.status === null ? "Pending" : details.status ? "Approved" : "Declined"
+    const status = details.isApproved === null ? "Pending" : details.isApproved ? "Approved" : "Declined"
     return (
-        <div>
-            <h2>Dr. {doctorsName}</h2>
-            <p>Reason: {details.reason}</p>
-            <div>
+        <div className='appointment-card'>
+            <h3>Dr. {doctorsName}</h3>
+            <p className='reason'>Purpose: {details.reason}</p>
+            <div className='appointment-date'>
                 <img src={ time === "past" ? history : upcoming} alt="Time icon" />
-                <p>{appointmentDate}</p>
+                <span>{appointmentDate}</span>
             </div>
-            <div>
+            <div className='status'>
                 <div className={`indicator ${status}`}></div>
-                <p>{status}</p>
+                <span>{status}</span>
             </div>
         </div>
     );

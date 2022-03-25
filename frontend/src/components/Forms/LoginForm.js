@@ -5,8 +5,6 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import SessionContext from '../../provider/SessionContext'
 import { loginDoctor } from '../../util/api/doctor';
-// import { success } from '../AntComponents/Notification';
-// import "antd/dist/antd.less";
 
 function LoginForm({ isPatient }) {
     const [error, setError] = useState(false)
@@ -17,14 +15,14 @@ function LoginForm({ isPatient }) {
         formState: { errors }
     } = useForm({ defaultValues: { isPatient: isPatient }});
 
-    const { setSession } = useContext(SessionContext)
+    const { session, setSession } = useContext(SessionContext)
+    console.log(session, "Login")
 
     const onSubmit = async (data) => {
        let res = isPatient ? await loginPatient(data) : await loginDoctor(data)
     
         if(res){
             setSession({...res, auth: true})
-            // success()
             if(res.userType === "patient")
                 navigate(`${res.user.isUpdated? "/patient/dashboard" : "/patient/profile"}`)
             else{

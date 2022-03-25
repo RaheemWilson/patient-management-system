@@ -9,8 +9,7 @@ export const createAppointment = async (data, token) => {
         },
         body: JSON.stringify(data)
     })
-    // console.log(await res.json())
-    // return null
+    
     return res.status === 201 ? await res.json(): null
 }
 
@@ -22,6 +21,7 @@ export const getAppointments = async (token) => {
             "Authorization": "Bearer " + token,
         },
     })
-    
+    // console.log(await res.json())
+    // return null
     return res.status === 200 ? await res.json(): null
 }

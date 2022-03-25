@@ -1,4 +1,6 @@
 import { notification, message } from 'antd';
+// import 'antd/es/notification/style/index.css'
+// import 'antd/es/message/style/index.css'
 
 
 export const successfulSignUp = () => {

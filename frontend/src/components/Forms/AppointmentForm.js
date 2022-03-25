@@ -1,22 +1,28 @@
 import React from 'react';
 import { useForm } from 'react-hook-form'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import {  useNavigate } from 'react-router-dom'
 import SessionContext from '../../provider/SessionContext'
 import { createAppointment } from '../../util/api/appointment';
-
+import { getDoctors } from '../../util/api/doctor';
 
 function AppointmentForm() {
     const [error, setError] = useState(false)
+    const [doctors, setDoctors] = useState([])
     const navigate = useNavigate()
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm();
+    } = useForm({
+        defaultValues: {
+            doctor: "",
+        }
+    });
     const { session } = useContext(SessionContext)
 
     const onSubmit = async (data) => {
+        console.log(data)
         let res = await createAppointment(data, session?.authToken)
     
         if(res){
@@ -29,6 +35,14 @@ function AppointmentForm() {
 
     };
 
+    useEffect(() => {
+      getDoctors(session.authToken)
+      .then(res => {
+          setDoctors(res.doctors)
+      })
+    }, [])
+    
+
     return (
         <div className='appointmentForm'>
             { error && <p className='error'>There is an error in creating your appointment, please try again.</p> }
@@ -37,22 +51,19 @@ function AppointmentForm() {
                     <label htmlFor="doctor">Doctor</label>
                     <select {...register("doctor", { required: true })}>
                         <option 
-                            value="" 
                             defaultValue="Choose your doctor" 
                             disabled 
                             hidden
                         > Choose your doctor
                         </option>
-                        {/* {
+                        {
                             doctors.map((doctor, index) => {
-                                let name = doctor.firstName+" "+doctor.lastName+" "+doctor.creditials
+                                let name = doctor.firstName+" "+doctor.lastName
                                 return (
-                                    <option value={`${doctor.id}`}>{ name }</option>
+                                    <option value={`${doctor._id}`} key={index}>Dr. { name }</option>
                                 )
                             })
-                        } */}
-                        <option value="1234459ddndsj">Dr. Wright Wilson</option>
-                        
+                        }
                     </select>
                     {errors?.doctor?.type === "required" && <p>This field is required.</p>}
                 </div>

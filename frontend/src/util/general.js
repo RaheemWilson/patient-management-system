@@ -1,5 +1,5 @@
 export const dateOptions = { 
-    weekday: 'long', 
+    weekday: 'short', 
     year: 'numeric', 
     month: 'long', 
     day: 'numeric' 
