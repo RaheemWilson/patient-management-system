@@ -5,11 +5,14 @@ import {  useNavigate } from 'react-router-dom'
 import SessionContext from '../../provider/SessionContext'
 import { createAppointment } from '../../util/api/appointment';
 import { getDoctors } from '../../util/api/doctor';
+import { useNotifications } from '@mantine/notifications';
 
 function AppointmentForm() {
     const [error, setError] = useState(false)
     const [doctors, setDoctors] = useState([])
     const navigate = useNavigate()
+    const notifications = useNotifications();
+
     const {
         register,
         handleSubmit,
@@ -22,15 +25,19 @@ function AppointmentForm() {
     const { session } = useContext(SessionContext)
 
     const onSubmit = async (data) => {
-        console.log(data)
         let res = await createAppointment(data, session?.authToken)
     
         if(res){
+            notifications.showNotification({
+                title: "Your appointment was created",
+                message: "Your doctor will respond as soon as possible.",
+            })
             setError(false)
             navigate("/patient/dashboard")
         } else {
-            console.log(res)
-            setError(true)
+            setTimeout(() => {
+                setError(true)
+            }, 4000);
         }
 
     };

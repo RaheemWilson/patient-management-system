@@ -127,7 +127,22 @@
     }
 }
 
+.modal{
+    margin: 0 0 12px 0;
+    p{
+        margin: 8px 0;
+    }
 
+    div{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        span{
+            color: #fff;
+        }
+    }
+}
 
 
 .agreement{

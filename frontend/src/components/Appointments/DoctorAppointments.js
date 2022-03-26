@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import PatientAppointment from './PatientAppointment';
+import DoctorAppointment from './DoctorAppointment';
 import './appointment.scss'
 
-function PatientAppointments({ appointments }) {
+function DoctorAppointments({ appointments }) {
     let now = Date.parse(new Date())
     const [pastAppointments, setPastAppointments] = useState([])
     const [upcomingAppointments, setUpcomingAppointments] = useState([])
@@ -27,7 +27,7 @@ function PatientAppointments({ appointments }) {
                         upcomingAppointments.length > 0 ? (
                             upcomingAppointments.map((appointment, index) => {
                                 return (
-                                    <PatientAppointment details={appointment} time={"upcoming"} key={index}/>
+                                    <DoctorAppointment details={appointment} time={"upcoming"} key={index}/>
                             )})
                         ) : <></>
                     }
@@ -40,7 +40,7 @@ function PatientAppointments({ appointments }) {
                         pastAppointments.length > 0 ? (
                             pastAppointments.map((appointment, index) => {
                                 return (
-                                    <PatientAppointment details={appointment} time={"past"} key={index}/>
+                                    <DoctorAppointment details={appointment} time={"past"} key={index}/>
                                 )
                             })
                         ) : <></>
@@ -51,4 +51,4 @@ function PatientAppointments({ appointments }) {
     );
 }
 
-export default PatientAppointments;
+export default DoctorAppointments;

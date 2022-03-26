@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import SessionContext from "../../provider/SessionContext"
 import { getAppointments } from "../../util/api/appointment"
 import { dateOptions } from "../../util/general"
+import { Loader } from '@mantine/core';
 
 function DoctorDashboard(props) {
     let { session } = useContext(SessionContext)
@@ -14,15 +15,21 @@ function DoctorDashboard(props) {
     let todayStr = today.toLocaleString('en-US', dateOptions)
 
     useEffect(() => {
-        console.log(session)
        getAppointments(session?.authToken)
         .then(res => {
            console.log(res)
-        //    setTimeout(() => {
-               setAppointments([...res.appointments])
-        //    }, 10000);
+            setAppointments([...res.appointments])
        })
     }, [])
+
+    if(!appointments){
+        return (
+            <div className="skeleton-board">
+                <Loader size="xl" variant="dots" />;
+            </div>
+        )
+    }
+
     return (
         <div>
             <div className="dashboard-header">

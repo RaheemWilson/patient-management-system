@@ -4,49 +4,79 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { createDoctor } from '../../util/api/doctor';
 import { createPatient } from '../../util/api/patient';
-import { info } from '../AntComponents/Modal';
-import { successfulSignUp } from '../AntComponents/Notification';
-// import "antd/dist/antd.less";
+import { Modal, Button } from '@mantine/core';
 
 function SignupForm({ isPatient }) {
     const [passwordCheck, setPasswordCheck] = useState(false)
+    const [openModal, setOpenModal] = useState(false)
+    const [id, setId] = useState(null)
     const [error, setError] = useState(false)
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm({ defaultValues: { isPatient: isPatient }});
-    
+
     const navigate = useNavigate()
 
     const onSubmit =  async (data) => {
         if(data.password !== data.cpassword){
-            setPasswordCheck(true)
+            setTimeout(() => {
+                setPasswordCheck(true)
+            }, 4000);
         } else {
             if(isPatient){
                 let res = await createPatient(data)
                 if(res){
-                    successfulSignUp()
                     navigate("/auth/login?user=patient")
                 } else {
-                    setError(true)
+                    setTimeout(() => {
+                        setError(true)
+                    }, 4000);
                 }
             } else {
                 let res = await createDoctor(data)
         
                 if(res){
-                    info(res.doctorId)
-                    navigate("/auth/login?user=doctor")
+                    setId(res.doctorId)
+                    setOpenModal(true)
                 } else {
-                    setError(true)
+                    setTimeout(() => {
+                        setError(true)
+                    }, 4000);
                 }
             }
 
         }
     };
 
+    const handleClose = () => {
+        setOpenModal(false)
+        navigate("/auth/login?user=doctor")
+    }
+
     return (
         <div className='form'>
+        
+            <Modal
+                opened={openModal}
+                onClose={handleClose}
+                withCloseButton={true}
+            >
+                <div className='modal'>
+                    <p>For subsequent login in purposes you will be required to use your assigned ID Number</p>
+                    <p>ID Number is <strong>{id}</strong>.</p>
+                    <div>
+                        <Button 
+                            radius={6} 
+                            color="white" 
+                            variant='filled'
+                            onClick={handleClose}
+                        >Ok</Button>
+                    </div>
+                </div>
+            </Modal>
+            
             { error && <p className='error'>There is an error in creating your account please try again</p> }
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='name'>

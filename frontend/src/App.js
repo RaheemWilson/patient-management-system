@@ -15,7 +15,6 @@ import Appointment from "./pages/Appointment/Appointment";
 import DoctorDashboard from "./pages/Dashboard/DoctorDashboard";
 import PatientRoutes from "./components/Routes/PatientRoutes";
 import DoctorRoutes from "./components/Routes/DoctorRoutes";
-import "antd/dist/antd.less";
 
 function App() {
   return (

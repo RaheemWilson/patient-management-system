@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import PatientAppointments from "../../components/Appointments/PatientAppointments"
 import SessionContext from "../../provider/SessionContext"
 import { getAppointments } from "../../util/api/appointment"
 import { dateOptions } from "../../util/general"
-import { Skeleton, List } from 'antd';
+import doctorSvg from '../../assets/images/doctors.svg'
+import { Plus } from "tabler-icons-react"
+import { Loader } from '@mantine/core';
 import './dashboard.scss'
-import { success } from "../../components/AntComponents/Notification"
-import "antd/dist/antd.less";
 
 export default function Dashboard() {
     let { session } = useContext(SessionContext)
@@ -19,32 +20,16 @@ export default function Dashboard() {
     let todayStr = today.toLocaleString('en-US', dateOptions)
 
     useEffect(() => {
-        console.log(session)
-        success()
        getAppointments(session?.authToken)
         .then(res => {
-           console.log(res)
-           setTimeout(() => {
-               setAppointments([...res.appointments])
-           }, 5000);
+            setAppointments([...res.appointments])
        })
     }, [])
 
     if(!appointments){
         return (
             <div className="skeleton-board">
-                <h1>Welcome, {firstName}!</h1>
-                <List
-                    itemLayout="vertical"
-                    size="large"
-                    dataSource={[...Array(8).keys()]}
-                    renderItem={_ => (
-                        <List.Item>
-                            <Skeleton active />
-                        </List.Item>
-                    )}
-                >
-                </List>
+                <Loader size="xl" variant="dots" />;
             </div>
         )
     }
@@ -56,15 +41,28 @@ export default function Dashboard() {
                 <h1>Welcome, <span>{firstName}!</span></h1>
                 <p>{todayStr}</p>
             </div>
-            <p className="info">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, dolorum laudantium quia ipsam repudiandae ut itaque. 
-                Ut aperiam quas eos voluptatum expedita, tempore porro, assumenda obcaecati eveniet hic consectetur fugit.
-            </p>
             {
                 appointments.length > 0 && (
-                    <PatientAppointments appointments={appointments}/>
+                    <>
+                        <p className="info">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, dolorum laudantium quia ipsam repudiandae ut itaque. 
+                            Ut aperiam quas eos voluptatum expedita, tempore porro, assumenda obcaecati eveniet hic consectetur fugit.
+                        </p>
+                        <PatientAppointments appointments={appointments}/>
+                    </>
                 )
             }
+            {
+                appointments.length === 0 && (
+                    <div className="no-appointments">
+                        <img src={doctorSvg} alt="Doctors illustration" />
+                        <p>There are currently no appointments for you.</p>
+                        <Link to="/patient/create-appointment" className="link">
+                            <Plus size={20} /> <span>Create an appointment</span>
+                        </Link>
+                    </div>
+            )}
+
         </div>
     )
 }

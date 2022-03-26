@@ -19,6 +19,7 @@
     border: 1px solid #979DAC;
     border-radius: 8px;
     padding: 1rem;
+    cursor: pointer;
 
     h3{
         padding: 12px 0;
@@ -68,4 +69,18 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.appointment-modal{
+    .mantine-Modal-title{
+        color: g.$light-blue;
+        font-weight: 900;
+    }
+
+    p{
+        margin: 12px 0;
+    }
+    span{
+        font-weight: 500;
+    }
 }

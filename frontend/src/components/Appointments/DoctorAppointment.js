@@ -3,8 +3,8 @@ import { dateOptions } from '../../util/general';
 import upcoming from '../../assets/icons/schedule_black.svg'
 import history from '../../assets/icons/history_black.svg'
 
-function Appointment({ details, time }) {
-    const doctorsName = [details.doctor.firstName, details.doctor.lastName].join(" ")
+function DoctorAppointment({ details, time }) {
+    const patientsName = [details.patient.firstName, details.patient.lastName].join(" ")
     const appointmentDate = new Date(details.dateTime).toLocaleString('en-US', {...dateOptions, 
         hour: 'numeric', 
         minute: 'numeric',
@@ -13,7 +13,7 @@ function Appointment({ details, time }) {
     const status = details.isApproved === null ? "Pending" : details.isApproved ? "Approved" : "Declined"
     return (
         <div className='appointment-card'>
-            <h3>Dr. {doctorsName}</h3>
+            <h3>Dr. {patientsName}</h3>
             <p className='reason'>Purpose: {details.reason}</p>
             <div className='appointment-date'>
                 <img src={ time === "past" ? history : upcoming} alt="Time icon" />
@@ -27,4 +27,4 @@ function Appointment({ details, time }) {
     );
 }
 
-export default Appointment;
+export default DoctorAppointment;

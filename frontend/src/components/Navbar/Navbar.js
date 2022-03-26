@@ -35,13 +35,17 @@ export default function Navbar() {
                             Consulto doctors
                         </Link>
                     </li>
-                    <li className="navOption apt">
-                        <Link 
-                            to={{ 
-                                pathname: `${ session?.auth ? "/patient/create-appointment": "/auth/login?user=patient"}`,
-                            }}
-                        >Book an appointment</Link>
-                    </li>
+                    {
+                        session?.userType === "patient" && (
+                            <li className="navOption apt">
+                                <Link 
+                                    to={{ 
+                                        pathname: `${ session?.auth ? "/patient/create-appointment": "/auth/login?user=patient"}`,
+                                    }}
+                                >Book an appointment</Link>
+                            </li>
+                        )
+                    }
                     {
                         session?.auth ? <Dropdown/> : (
                             <li className="navOption">

@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import SessionContext from '../../provider/SessionContext'
 import { loginDoctor } from '../../util/api/doctor';
+import { useNotifications } from '@mantine/notifications';
+import { Check } from 'tabler-icons-react';
 
 function LoginForm({ isPatient }) {
     const [error, setError] = useState(false)
@@ -14,6 +16,7 @@ function LoginForm({ isPatient }) {
         handleSubmit,
         formState: { errors }
     } = useForm({ defaultValues: { isPatient: isPatient }});
+    const notifications = useNotifications();
 
     const { session, setSession } = useContext(SessionContext)
     console.log(session, "Login")
@@ -22,6 +25,11 @@ function LoginForm({ isPatient }) {
        let res = isPatient ? await loginPatient(data) : await loginDoctor(data)
     
         if(res){
+            notifications.showNotification({
+                message: "You have successfully logged in!",
+                icon: <Check size={20}/>,
+                color: "teal"
+            })
             setSession({...res, auth: true})
             if(res.userType === "patient")
                 navigate(`${res.user.isUpdated? "/patient/dashboard" : "/patient/profile"}`)
@@ -29,7 +37,9 @@ function LoginForm({ isPatient }) {
                 navigate(`/doctor/dashboard`)
             }
         } else {
-            setError(true)
+            setTimeout(() => {
+                setError(true)
+            }, 4000);
         }
     };
 

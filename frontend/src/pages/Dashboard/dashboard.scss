@@ -19,3 +19,39 @@
     margin: 24px 0;
     line-height: 24px;
 }
+
+.skeleton-board{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-appointments{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 4rem;
+
+    *{
+        color: g.$light-blue;
+    }
+
+    p{
+        margin: 12px 0;
+    }
+
+    img{
+        width: 40%;
+        height: 30%;
+    }
+
+    .link{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        text-decoration: underline;
+    }
+}
