@@ -1,6 +1,6 @@
 import express from 'express';
 import jwtCheck from '../../middleware/validateToken';
-import { createAppointment, getAppointments } from '../controllers/appointment.controller';
+import { createAppointment, getAppointments, updateAppointment } from '../controllers/appointment.controller';
 import { updateProfile, deleteAccount } from '../controllers/patient.controller';
 
 const router = express.Router()
@@ -12,6 +12,8 @@ router.use(jwtCheck)
 router.post("/appointment", createAppointment)
 
 router.get("/appointments", getAppointments)
+
+router.patch('/appointment/:id', updateAppointment)
 
 router.put("/update/:id", updateProfile)
 

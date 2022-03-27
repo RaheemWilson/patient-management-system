@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { compare } from "bcrypt"
 import Doctor from "../../db/models/Doctor"
 const jwtUtil = require('../../utils/jwt')
@@ -102,7 +103,7 @@ export const createDoctor = (req, res) => {
         let randomId = 0
         while(length > 0){
             randomId = Math.floor(1000000 + Math.random() * 9000000);
-            length = Doctor.find({ doctorId: randomId })
+            length = Doctor.find({ doctorId: randomId }).length
         }  
         
         Doctor.exists({ email }, async (err, exist) => {

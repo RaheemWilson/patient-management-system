@@ -7,6 +7,7 @@ import "dotenv/config";
 // Route Imports
 import authRoutes from './api/routes/auth.routes'
 import patientRoutes from './api/routes/patient.routes'
+import doctorRoutes from './api/routes/doctor.routes'
 
 const app = express();
 
@@ -33,6 +34,7 @@ mongoose
 // Register Routes
 app.use("/auth", authRoutes)
 app.use("/patient", patientRoutes)
+app.use("/doctors", doctorRoutes)
 
 app.get("/", (req, res, next) => {
   res.json({ message: "from index api" });

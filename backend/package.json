@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "test": "npm test"
+    "test": "jest"
   },
   "author": "Raheem Wilson",
   "license": "ISC",
@@ -21,6 +21,10 @@
     "@babel/core": "^7.17.8",
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
-    "nodemon": "^2.0.15"
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.1"
   }
 }

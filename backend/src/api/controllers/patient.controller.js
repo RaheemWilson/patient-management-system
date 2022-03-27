@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { default: Patient } = require("../../db/models/Patient")
 
 /**
@@ -9,7 +10,6 @@ const { default: Patient } = require("../../db/models/Patient")
 export const updateProfile = (req, res) => {
 
     try {
-        console.log("Heyyyyy")
         let userId = req.params.id
         let updatedDetails = req.body
 

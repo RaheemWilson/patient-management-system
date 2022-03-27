@@ -15,9 +15,9 @@ const jwtCheck = (req, res, next) => {
         const authHeader = req.headers.authorization; 
         const authToken = authHeader.split(" ")[1];
         jwtUtil.isTokenValid(authToken).then((userInfo) => {
-            req.user_session = {...userInfo._doc}
+            req.user_session = {...userInfo}
             next()
-        }).catch(err => {
+        }).catch(() => {
             
             res.status(403).json({
                 message: "Not Valid Token"
