@@ -15,6 +15,7 @@ import Appointment from "./pages/Appointment/Appointment";
 import DoctorDashboard from "./pages/Dashboard/DoctorDashboard";
 import PatientRoutes from "./components/Routes/PatientRoutes";
 import DoctorRoutes from "./components/Routes/DoctorRoutes";
+import About from "./pages/About/About";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout/>}>
               <Route path="/" index element={<Home/>} />
+              <Route path="about" index element={ <About/> } />
               <Route path="/" element={<PatientRoutes/>}>
                   <Route path="patient">
                     <Route path="dashboard" element={ <Dashboard/> } />

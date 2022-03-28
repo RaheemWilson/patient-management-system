@@ -1,18 +1,30 @@
 @use '../../util/styles/global' as g;
 
 .aptHeader{
-    margin: 12px 0
+    margin: 12px 0;
+
+    span{
+        color: g.$light-blue;
+    }
 }
 
 .aptDesc{
     width: 60%;
     line-height: 24px;
+
+    @media screen and (max-width: 620px) {
+        width: 100%;
+    }
 }
 
 .appointmentForm{
     @include g.form;
     input, select, textarea{
         width: 60%;
+
+        @media screen and (max-width: 620px) {
+            width: 100%;
+        }
     }
 
     textarea{
@@ -25,5 +37,13 @@
         background-color: g.$light-blue;
         color: #fff;
         cursor: pointer;
+
+        @media screen and (max-width: 780px) {
+            width: 60%;
+        }
+
+        @media screen and (max-width: 620px) {
+            width: 100%;
+        }
     }
 }

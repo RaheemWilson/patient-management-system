@@ -4,6 +4,14 @@
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 1rem;
     padding: 1rem 0;
+
+    @media screen and (max-width: 520px) {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    @media screen and (max-width: 420px) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
 }
 
 .appointments-container{
@@ -12,6 +20,14 @@
     h2{
         font-weight: 500;
         color: g.$light-blue;
+    }
+
+    .empty-appointment{
+        color: g.$light-blue;
+        background-color: #EAF4FF;
+        text-align: center;
+        padding: 12px 5px;
+        border-radius: 6px;
     }
 }
 
@@ -39,29 +55,9 @@
     }
 
     .status{
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 8px 0;
+        margin: 10px 0 0 0;
     }
 
-    .indicator{
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-    }
-
-    .Pending{
-        background-color:#ffcc00;
-    }
-
-    .Declined{
-        background-color: #cc3300;
-    }
-
-    .Approved{
-        background-color:#339900;
-    }
 
 }
 
@@ -77,10 +73,25 @@
         font-weight: 900;
     }
 
+    .mantine-Modal-modal{
+        margin-left: 0;
+    }
+
     p{
         margin: 12px 0;
+        line-height: 20px;
     }
     span{
         font-weight: 500;
+        margin-right: 8px;
+    }
+
+    .btns{
+        display: flex;
+        gap: 1rem;
+    }
+
+    a{
+        text-decoration: underline;
     }
 }

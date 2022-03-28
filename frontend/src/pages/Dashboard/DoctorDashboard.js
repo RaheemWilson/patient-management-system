@@ -2,7 +2,9 @@ import { useContext, useEffect, useState } from "react"
 import SessionContext from "../../provider/SessionContext"
 import { getAppointments } from "../../util/api/appointment"
 import { dateOptions } from "../../util/general"
+import doctorSvg from '../../assets/images/doctors.svg'
 import { Loader } from '@mantine/core';
+import DoctorAppointments from '../../components/Appointments/DoctorAppointments'
 
 function DoctorDashboard(props) {
     let { session } = useContext(SessionContext)
@@ -33,14 +35,25 @@ function DoctorDashboard(props) {
     return (
         <div>
             <div className="dashboard-header">
-                <h1>Welcome, <span>{firstName}!</span></h1>
+                <h1>Welcome,  <span>Dr. {firstName}!</span></h1>
                 <p>{todayStr}</p>
             </div>
-            {/* {
-                appointments.length > 0 && (
-                    <PatientAppointments appointments={appointments}/>
+            {
+                appointments.length > 0 ? (
+                    <>
+                        <p className="info">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, dolorum laudantium quia ipsam repudiandae ut itaque. 
+                            Ut aperiam quas eos voluptatum expedita, tempore porro, assumenda obcaecati eveniet hic consectetur fugit.
+                        </p>
+                        <DoctorAppointments appointments={appointments}/>
+                    </>
+                ) : (
+                    <div className="no-appointments">
+                        <img src={doctorSvg} alt="Doctors illustration" />
+                        <p>There are currently no appointments for you.</p>
+                    </div>
                 )
-            } */}
+            }
         </div>
     );
 }

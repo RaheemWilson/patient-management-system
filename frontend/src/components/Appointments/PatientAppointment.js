@@ -3,6 +3,7 @@ import { dateOptions } from '../../util/general';
 import upcoming from '../../assets/icons/schedule_black.svg'
 import history from '../../assets/icons/history_black.svg'
 import PatientModal from '../Modals/PatientModal';
+import BadgeComponent from '../Badge/Badge';
 
 function PatientAppointment({ details, time }) {
     const [opened, setOpened] = useState();
@@ -29,8 +30,7 @@ function PatientAppointment({ details, time }) {
                     <span>{appointmentDate}</span>
                 </div>
                 <div className='status'>
-                    <div className={`indicator ${status}`}></div>
-                    <span>{status}</span>
+                    <BadgeComponent status={status} />
                 </div>
             </div>
             <PatientModal 

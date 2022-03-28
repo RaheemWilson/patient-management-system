@@ -41,8 +41,9 @@ function SignupForm({ isPatient }) {
                     setId(res.doctorId)
                     setOpenModal(true)
                 } else {
+                    setError(true)
                     setTimeout(() => {
-                        setError(true)
+                        setError(false)
                     }, 4000);
                 }
             }

@@ -15,7 +15,7 @@ export default function PatientModal({
       <Modal
         opened={opened}
         onClose={() => handleOpened(false)}
-        title="Appointment"
+        title="Doctor's Appointment"
         className='appointment-modal'
       >
         <p><span>Consultation with:</span>{" Dr. " + name }</p>

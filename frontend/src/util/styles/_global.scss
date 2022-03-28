@@ -27,6 +27,10 @@ $red: rgb(255, 42, 42);
         margin: 5px 0;
         font-size: 16px;
         font-weight: 200;
+
+        @media screen and (max-width: 780px) {
+            width: 100%;
+        }
     }
 
     label{

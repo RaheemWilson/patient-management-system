@@ -25,18 +25,22 @@ export default function Navbar() {
                     <li className="navOption">
                         <Link to="about">About Us</Link>
                     </li>
-                    <li className="navOption">
-                        <Link to={
-                            {
-                                pathname: "/auth/login?user=doctor",
-                            }
-                        }
-                        >
-                            Consulto doctors
-                        </Link>
-                    </li>
                     {
-                        session?.userType === "patient" && (
+                        !session && (   
+                            <li className="navOption">
+                                <Link to={
+                                    {
+                                        pathname: "/auth/login?user=doctor",
+                                    }
+                                }
+                                >
+                                    Consulto doctors
+                                </Link>
+                            </li>
+                        )
+                    }
+                    {
+                        (session?.userType === "patient" || !session) && (
                             <li className="navOption apt">
                                 <Link 
                                     to={{ 

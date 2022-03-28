@@ -18,8 +18,7 @@ function LoginForm({ isPatient }) {
     } = useForm({ defaultValues: { isPatient: isPatient }});
     const notifications = useNotifications();
 
-    const { session, setSession } = useContext(SessionContext)
-    console.log(session, "Login")
+    const { setSession } = useContext(SessionContext)
 
     const onSubmit = async (data) => {
        let res = isPatient ? await loginPatient(data) : await loginDoctor(data)
@@ -37,8 +36,9 @@ function LoginForm({ isPatient }) {
                 navigate(`/doctor/dashboard`)
             }
         } else {
+            setError(true)
             setTimeout(() => {
-                setError(true)
+                setError(false)
             }, 4000);
         }
     };

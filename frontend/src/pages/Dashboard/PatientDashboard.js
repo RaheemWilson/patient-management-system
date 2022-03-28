@@ -42,7 +42,7 @@ export default function Dashboard() {
                 <p>{todayStr}</p>
             </div>
             {
-                appointments.length > 0 && (
+                appointments.length > 0 ? (
                     <>
                         <p className="info">
                             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, dolorum laudantium quia ipsam repudiandae ut itaque. 
@@ -50,10 +50,7 @@ export default function Dashboard() {
                         </p>
                         <PatientAppointments appointments={appointments}/>
                     </>
-                )
-            }
-            {
-                appointments.length === 0 && (
+                ) : (
                     <div className="no-appointments">
                         <img src={doctorSvg} alt="Doctors illustration" />
                         <p>There are currently no appointments for you.</p>
@@ -61,8 +58,8 @@ export default function Dashboard() {
                             <Plus size={20} /> <span>Create an appointment</span>
                         </Link>
                     </div>
-            )}
-
+                )
+            }
         </div>
     )
 }

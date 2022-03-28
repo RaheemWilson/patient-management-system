@@ -23,11 +23,17 @@ main {
   margin: 0;
   font-family: 'Rubik', sans-serif;
   box-sizing: border-box;
+}
+
+p, h1, h2, h3, a{
   color: #313131;
 }
 
 body{
   padding: 0 4rem;
+  @media screen and (max-width: 520px){
+    padding: 0 1rem;
+  }
 }
 
 

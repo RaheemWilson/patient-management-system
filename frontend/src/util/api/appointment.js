@@ -21,7 +21,20 @@ export const getAppointments = async (token) => {
             "Authorization": "Bearer " + token,
         },
     })
+    return res.status === 200 ? await res.json(): null
+}
+
+export const updateAppointment = async (token, isApproved, id) => {
+    let res = await fetch(`${URL}/patient/appointment/${id}`, {
+        method: "PATCH",
+        headers: {
+            'Content-type': 'application/json',
+            "Authorization": "Bearer " + token,
+        },
+        body: JSON.stringify({ isApproved: isApproved })
+    })
     // console.log(await res.json())
     // return null
     return res.status === 200 ? await res.json(): null
 }
+

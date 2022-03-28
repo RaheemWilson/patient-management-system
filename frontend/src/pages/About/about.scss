@@ -1,0 +1,32 @@
+@use '../../util/styles/global' as g;
+.about-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    margin-top: 2rem;
+    width: 100%;
+
+    @media screen and (max-width: 520px) {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); ;
+    }
+
+    @media screen and (max-width: 420px) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); ;
+    }
+
+    h1{
+        font-size: 6vw;
+
+        @media screen and (max-width: 520px){
+            font-size: 8vw;
+        }
+
+        span{
+            color: g.$light-blue;
+        }
+    }
+
+    p{
+        margin-top: 1.5rem;
+        line-height: 28px ;
+    }
+}

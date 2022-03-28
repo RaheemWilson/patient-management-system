@@ -29,7 +29,11 @@ function PatientAppointments({ appointments }) {
                                 return (
                                     <PatientAppointment details={appointment} time={"upcoming"} key={index}/>
                             )})
-                        ) : <></>
+                        ) : (
+                            <div className="empty-appointment">
+                                You have no upcoming appointments as of today. 
+                            </div>
+                        )
                     }
                 </div>
             </div>
@@ -43,7 +47,11 @@ function PatientAppointments({ appointments }) {
                                     <PatientAppointment details={appointment} time={"past"} key={index}/>
                                 )
                             })
-                        ) : <></>
+                        ) : (
+                            <div className="empty-appointment">
+                                You have not been to an appointment as of today.  
+                            </div>
+                        )
                     }
                 </div>
             </div>
