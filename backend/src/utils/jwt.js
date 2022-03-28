@@ -17,7 +17,7 @@ exports.decodeToken = (token) => {
 exports.isTokenValid = (token) => {
 
     return new Promise((resolve,reject)=>{
-        jwt.verify(token,secret,function (error,decodedPayload){
+        jwt.verify(token, secret, function (error,decodedPayload){
             if (error)
                 reject(error);
             else 
@@ -26,6 +26,7 @@ exports.isTokenValid = (token) => {
                 if(Date.now() >= exp * 1000){
                     reject({ message: "Token invalid"})
                 }
+
                 resolve(decodedPayload)
         })
     })

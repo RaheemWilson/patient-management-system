@@ -8,7 +8,6 @@ import Appointment from "../../db/models/Appointment"
 export const createAppointment = async (req, res) => {
     try {
         let patientId = req.user_session._id
-        console.log(req.user)
 
         let { dateTime, doctor, reason } = req.body
 
@@ -76,7 +75,6 @@ export const updateAppointment = (req, res) => {
                 if(err){
                     res.status(400).json({ message: err})
                 }
-
                 res.status(200).json({ message : "Updated successfully"})
             })
 

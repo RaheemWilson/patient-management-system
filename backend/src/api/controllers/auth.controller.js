@@ -1,8 +1,11 @@
 /* eslint-disable no-undef */
 import { compare } from "bcrypt"
+import Auth from "../../db/models/Auth"
 import Doctor from "../../db/models/Doctor"
+import Patient from "../../db/models/Patient"
+// import { successfulSignup } from "../../utils/mail/mail"
+// import { transporter } from "../../utils/mail/transporter"
 const jwtUtil = require('../../utils/jwt')
-const { default: Patient } = require("../../db/models/Patient")
 
 
 /**
@@ -73,9 +76,11 @@ export const loginPatient = async (req, res) => {
                 message: "Invalid Password",
             });
         }
-    
+
         user.password = undefined
         const token = jwtUtil.createToken({ _id: user._id, userType: "patient"})
+
+        await Auth.create({ user: user._id, token: token})
         res.status(200).json({ user: user, authToken: token, userType: "patient" })
 
     } catch (error) {
@@ -122,8 +127,16 @@ export const createDoctor = (req, res) => {
                     telephone,
                     doctorId: randomId
                 })
+
+                var emailRes = ''
+                // transporter.sendMail(successfulSignup(email, randomId, lastName), function(error){
+                //     if(!error){
+                //         console.log("sent")
+                //         emailRes = "Email sent successfully"
+                //     }
+                // });
                 
-                res.status(201).json({ message: "Created sucessfully", doctorId: randomId })
+                res.status(201).json({ message: "Created sucessfully", doctorId: randomId, email : emailRes })
             }
         })
     } catch (error) {
@@ -160,6 +173,7 @@ export const loginDoctor = async (req, res) => {
     
         user.password = undefined
         const token = jwtUtil.createToken({ _id: user._id, userType: "doctor"})
+        await Auth.create({user: user._id, token: token})
         res.status(200).json({ user: user, authToken: token, userType: "doctor" })
 
     } catch (error) {

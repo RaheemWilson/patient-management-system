@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import Auth from '../db/models/Auth';
 import jwtUtil from './../utils/jwt'
 
 /**
@@ -15,8 +17,17 @@ const jwtCheck = (req, res, next) => {
         const authHeader = req.headers.authorization; 
         const authToken = authHeader.split(" ")[1];
         jwtUtil.isTokenValid(authToken).then((userInfo) => {
-            req.user_session = {...userInfo}
-            next()
+            Auth.exists({ user: userInfo._id, token: authToken}, (err, doc) => {
+                if(err){
+                    res.status(400).json({ message: "Bad request"})
+                } 
+                else if(doc){
+                    req.user_session = {...userInfo}
+                    next()
+                } else {
+                    res.status(403).json({ message: "session not found"})
+                }
+            })
         }).catch(() => {
             
             res.status(403).json({

@@ -22,6 +22,10 @@ const PatientSchema = new Schema({
         type: String,
         requred: true,
     },
+    address:{
+        type: String,
+        default: ""
+    },
     gender: {
         type: String,
         default: ""
