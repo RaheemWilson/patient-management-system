@@ -26,17 +26,39 @@ export const acceptAppointment = ( email, appointment) => {
         subject: "Your appointment was approved!",
         html: `
             <div style="padding:10px;">
-            <p> Good day, ${appointment?.patient?.gender === "male"? "Mr" : "Mrs"} ${appointment?.patient?.lastName}
-            your appointment with Dr. ${appointment?.doctor?.lastName}. Please view details of your appointment.</p>
+            <p> Good day, ${appointment?.patient?.gender === "male"? "Mr" : "Mrs"} ${appointment?.patient?.lastName},
+            your appointment with Dr. ${appointment?.doctor?.lastName} was approved. Please view details of your appointment.</p>
             <ul>
                 <li>Date of consultation: <strong>${new Date(appointment.dateTime).toLocaleString()}</strong></li>
-                <li>Reason for consultation: <strong>${new Date(appointment.dateTime).toLocaleString()}</strong></li>
+                <li>Reason for consultation: <strong>${appointment.reason}</strong></li>
                 <li>Doctor for consultation: <strong>${appointment.doctor.firstName} ${appointment.doctor.lastName}</strong></li>
             </ul>
-            <p>If you have any further queries please contact Dr. ${appointment?.doctor?.lastName}</p>
+            <p>If you have any further queries please contact Dr. ${appointment?.doctor?.lastName}:</p>
             <a href="tel:${appointment.doctor.telephone}">${appointment.doctor.telephone}</a>
 
-            <p>Thanks for your cooperation and please make every effort to be on time for your consultation</p>
+            <p>Thanks for your cooperation and please make every effort to be on time for your consultation.</p>
+        `
+    }
+}
+
+export const declineAppointment = ( email, appointment) => {
+    return {
+        from: process.env.MAIL_ADDRESS,
+        to: email, 
+        subject: "Your appointment was declined!",
+        html: `
+            <div style="padding:10px;">
+            <p> Good day ${appointment?.patient?.gender === "male"? "Mr" : "Mrs"} ${appointment?.patient?.lastName},
+            sorry to inform you that your appointment with Dr. ${appointment?.doctor?.lastName} was declined. Please view details of your appointment.</p>
+            <ul>
+                <li>Date of consultation: <strong>${new Date(appointment.dateTime).toLocaleString()}</strong></li>
+                <li>Reason for consultation: <strong>${appointment.reason}</strong></li>
+                <li>Doctor for consultation: <strong>${appointment.doctor.firstName} ${appointment.doctor.lastName}</strong></li>
+            </ul>
+            <p>If you have any further queries please contact Dr. ${appointment?.doctor?.lastName}:</p>
+            <a href="tel:${appointment.doctor.telephone}">${appointment.doctor.telephone}</a>
+
+            <p>Thanks for your cooperation and please make every effort to be on time for your consultation.</p>
         `
     }
 }
