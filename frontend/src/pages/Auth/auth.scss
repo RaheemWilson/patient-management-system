@@ -122,7 +122,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: 1rem;
-        width: 100%;
+        width: 89%;
 
         @media screen and (max-width: 780px) {
             width: 100%;
@@ -165,7 +165,7 @@
 
 .button{
     height: 44px;
-    width: 100%;
+    width: 80%;
     color: #fff;
     background-color: g.$light-blue;
     @include g.btn;

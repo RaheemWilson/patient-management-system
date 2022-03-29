@@ -26,7 +26,7 @@ function EditProfile() {
     return (
         <div>
             <h1>{ session.user.isUpdated ? "Personal details" : "Please complete your profile"}</h1>
-            <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <form className="profile-form" onSubmit={handleSubmit(onSubmit)}>
                  <div className='inline'>
                     <div>
                         <label htmlFor="firstName">First name</label>

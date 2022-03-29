@@ -4,7 +4,3 @@ export const dateOptions = {
     month: 'long', 
     day: 'numeric' 
 };
-
-export const timeOptions = {
-    
-}
