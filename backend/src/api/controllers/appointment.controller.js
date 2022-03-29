@@ -1,6 +1,5 @@
 import Appointment from "../../db/models/Appointment"
-import { acceptAppointment, declineAppointment } from "../../utils/mail/mail"
-import { transporter } from "../../utils/mail/transporter"
+import mailer from "../../utils/mail/mail"
 
 /**
  * Creates an appointment
@@ -90,17 +89,9 @@ export const updateAppointment = (req, res) => {
                     }
     
                     if(isApproved){
-                       transporter.sendMail(acceptAppointment(doc?.patient?.email, doc), function(error){
-                            if(!error){
-                                console.log("sent")
-                            }
-                        });
+                        mailer.acceptAppointment(doc?.patient?.email, doc)
                     } else {
-                        transporter.sendMail(declineAppointment(doc?.patient?.email, doc), function(error){
-                            if(!error){
-                                console.log("sent")
-                            }
-                        });
+                        mailer.declineAppointment(doc?.patient?.email, doc)
                     }
                     res.status(200).json({ message : "Updated successfully"})
                 }

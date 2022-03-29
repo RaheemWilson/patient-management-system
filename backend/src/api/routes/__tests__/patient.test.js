@@ -3,6 +3,7 @@ import app from '../../../app'
 import mongoose from "mongoose";
 import supertest from "supertest";
 import { generateDoctorData, generatePatientData } from "../../../../tests/generate";
+import mailer from '../../../utils/mail/mail'
 
 let patientAuth = {}
 let doctorAuth = {}
@@ -94,12 +95,29 @@ describe('TEST /patient', () => {
     });
 
     it('The PATCH /patient/appointment/:id route should get appointments from a doctor', async () => {
+        jest.spyOn(mailer, 'acceptAppointment').mockImplementation(() => { return true });
+
         const response = await supertest(app)
             .patch(`/patient/appointment/${appointment._id}`)
             .send({
                 isApproved: "true"
             })
             .set("authorization", "Bearer " + doctorAuth.token);
+        
+        expect(response.statusCode).toBe(200);
+        expect(response.body.message).toBe("Updated successfully");
+    });
+
+    it('The PATCH /patient/appointment/:id route should get appointments from a doctor', async () => {
+        jest.spyOn(mailer, 'declineAppointment').mockImplementation(() => { return true });
+
+        const response = await supertest(app)
+            .patch(`/patient/appointment/${appointment._id}`)
+            .send({
+                isApproved: "false"
+            })
+            .set("authorization", "Bearer " + doctorAuth.token);
+        
         expect(response.statusCode).toBe(200);
         expect(response.body.message).toBe("Updated successfully");
     });

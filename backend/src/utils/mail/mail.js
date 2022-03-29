@@ -1,7 +1,9 @@
 import "dotenv/config";
+import { transporter } from "./transporter";
 
-export const successfulSignup = (email, randomId, name) => {
-    return {
+function successfulSignup(email, randomId, name){
+
+    let options = {
         from: process.env.MAIL_ADDRESS,
         to: email, 
         subject: "Successful Sign up on consulto",
@@ -16,11 +18,19 @@ export const successfulSignup = (email, randomId, name) => {
             <p>For subsequent login in purposes you will be required to use your assigned ID number.</p>
         `
     }
+
+    transporter.sendMail(options, function(error){
+        if(!error){
+            return "Email sent successfully"
+        }
+    });
+
+    return ''
 }
 
 
-export const acceptAppointment = ( email, appointment) => {
-    return {
+function acceptAppointment( email, appointment){
+    let options = {
         from: process.env.MAIL_ADDRESS,
         to: email, 
         subject: "Your appointment was approved!",
@@ -39,10 +49,18 @@ export const acceptAppointment = ( email, appointment) => {
             <p>Thanks for your cooperation and please make every effort to be on time for your consultation.</p>
         `
     }
+
+    transporter.sendMail(options, function(error){
+        if(!error){
+            return "Email sent successfully"
+        }
+    });
+
+    return ''
 }
 
-export const declineAppointment = ( email, appointment) => {
-    return {
+function declineAppointment( email, appointment){
+    let options = {
         from: process.env.MAIL_ADDRESS,
         to: email, 
         subject: "Your appointment was declined!",
@@ -61,4 +79,18 @@ export const declineAppointment = ( email, appointment) => {
             <p>Thanks for your cooperation and please make every effort to be on time for your consultation.</p>
         `
     }
+
+    transporter.sendMail(options, function(error){
+        if(!error){
+            return "Email sent successfully"
+        }
+    });
+
+    return ''
+}
+
+module.exports = {
+    successfulSignup,
+    acceptAppointment,
+    declineAppointment
 }

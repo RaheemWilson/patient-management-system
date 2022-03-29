@@ -3,6 +3,7 @@ import app from '../../../app'
 import mongoose from "mongoose";
 import supertest from "supertest";
 import { generateDoctorsData, generatePatientsData } from "../../../../tests/generate";
+import mailer from '../../../utils/mail/mail'
 
 let patients = []
 let doctors = []
@@ -24,7 +25,7 @@ afterAll(async () => {
 
 describe('TEST /auth/patient', () => {
   
-  it('The POST /patient/create - patient should be created', async () => {
+  it('The POST /create - patient should be created', async () => {
     const response = await supertest(app).post(
       '/auth/patient/create'
     ).send(
@@ -36,7 +37,7 @@ describe('TEST /auth/patient', () => {
     expect(response.body.message).toBe("Created sucessfully");
   });
 
-  it('The POST /patient/create route - patient should be in the system', async () => {
+  it('The POST /create route - patient should be in the system', async () => {
     const response = await supertest(app).post(
       '/auth/patient/create'
     ).send(
@@ -48,7 +49,7 @@ describe('TEST /auth/patient', () => {
     expect(response.body.message).toBe("Patient already in the system");
   });
 
-  it('The POST /patient/login route - patient should be authenticated', async () => {
+  it('The POST /login route - patient should be authenticated', async () => {
     const response = await supertest(app).post(
       '/auth/patient/login'
     ).send(
@@ -62,7 +63,7 @@ describe('TEST /auth/patient', () => {
     expect(response.body.userType).toBe("patient")
   });
 
-  it('The POST /patient/login route - patient should be not authenticated', async () => {
+  it('The POST /login route - patient should be not authenticated', async () => {
     const response = await supertest(app).post(
       '/auth/patient/login'
     ).send(
@@ -75,7 +76,7 @@ describe('TEST /auth/patient', () => {
     expect(response.body.message).toBe("Invalid Password");
   });
 
-  it('The POST /patient/login route - patient should be not authenticated', async () => {
+  it('The POST /login route - patient should be not authenticated', async () => {
     const response = await supertest(app).post(
       '/auth/patient/login'
     ).send(
@@ -92,10 +93,12 @@ describe('TEST /auth/patient', () => {
 
 
 describe('TEST /auth/doctor', () => {
-  // let connection;
   let doctorId = ""
 
-  it('The POST /doctor/create - doctor should be created', async () => {
+  it('The POST /create - doctor should be created', async () => {
+    jest.spyOn(mailer, 'successfulSignup').mockImplementation(() => { return true });
+
+    
     const response = await supertest(app).post(
       '/auth/doctor/create'
     ).send(
@@ -110,7 +113,7 @@ describe('TEST /auth/doctor', () => {
     expect(response.body.doctorId).toBeTruthy()
   });
 
-  it('The POST /doctor/create route - doctor should be in the system', async () => {
+  it('The POST /create route - doctor should be in the system', async () => {
     const response = await supertest(app).post(
       '/auth/doctor/create'
     ).send(
@@ -122,7 +125,7 @@ describe('TEST /auth/doctor', () => {
     expect(response.body.message).toBe("Doctor already in the system");
   });
 
-  it('The POST /doctor/login route - doctor should be authenticated', async () => {
+  it('The POST /login route - doctor should be authenticated', async () => {
     const response = await supertest(app).post(
       '/auth/doctor/login'
     ).send(
@@ -136,7 +139,7 @@ describe('TEST /auth/doctor', () => {
     expect(response.body.userType).toBe("doctor")
   });
 
-  it('The POST /doctor/login route - doctor should be not authenticated', async () => {
+  it('The POST /login route - doctor should be not authenticated', async () => {
     const response = await supertest(app).post(
       '/auth/doctor/login'
     ).send(

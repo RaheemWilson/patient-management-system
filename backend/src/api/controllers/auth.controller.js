@@ -3,8 +3,7 @@ import { compare } from "bcrypt"
 import Auth from "../../db/models/Auth"
 import Doctor from "../../db/models/Doctor"
 import Patient from "../../db/models/Patient"
-// import { successfulSignup } from "../../utils/mail/mail"
-// import { transporter } from "../../utils/mail/transporter"
+import mailer from '../../utils/mail/mail'
 const jwtUtil = require('../../utils/jwt')
 
 
@@ -128,14 +127,7 @@ export const createDoctor = (req, res) => {
                     doctorId: randomId
                 })
 
-                var emailRes = ''
-                // transporter.sendMail(successfulSignup(email, randomId, lastName), function(error){
-                //     if(!error){
-                //         console.log("sent")
-                //         emailRes = "Email sent successfully"
-                //     }
-                // });
-                
+                let emailRes = mailer.successfulSignup(email, randomId, lastName)
                 res.status(201).json({ message: "Created sucessfully", doctorId: randomId, email : emailRes })
             }
         })
