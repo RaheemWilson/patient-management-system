@@ -59,7 +59,7 @@
 .dropDown{
     display: none;
     position: absolute;
-    top: 4.2rem;
+    top: 3.9rem;
     right: 0;
     padding: 1rem;
     background-color: #fff;
@@ -84,4 +84,21 @@
 
 .dropDownContainer:hover .dropDown{
     display: block;
+}
+
+.mantine-gce173 {
+.mantine-Divider-horizontal{
+    margin: 5px 0;
+}}
+
+.mantine-Menu-label{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #313131;
+}
+.mantine-Menu-item{
+    font-size: 16px;
+    font-weight: 500;
+    color: #313131;
 }

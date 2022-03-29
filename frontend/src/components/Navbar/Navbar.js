@@ -1,11 +1,27 @@
-import { useContext } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import SessionContext from "../../provider/SessionContext"
-import Dropdown from "./Dropdown"
+import DesktopNavbar from "./DesktopNavbar"
+import MobileNavbar from "./MobileNavbar"
 import './navbar.scss'
 
 export default function Navbar() {
-    const { session } = useContext(SessionContext)
+    const [isMobile, setIsMobile] = useState(false)
+    useEffect(() => {
+
+        const handleResize = () => {
+            if(window.innerWidth < 768){
+                setIsMobile(true)
+            } else {
+                setIsMobile(false)
+            }
+        }
+
+        window.addEventListener('resize', handleResize)
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    })
+    
     return (
         <header className="header">
             <nav className="navBar">
@@ -14,50 +30,10 @@ export default function Navbar() {
                        consulto
                     </Link>
                 </div>
-                <ul className="navOptions">
-                    {
-                        session?.auth ? (
-                            <li className="navOption">
-                                <Link to="/patient/dashboard">Dashboard</Link>
-                            </li>
-                        ) : <></>
-                    }
-                    <li className="navOption">
-                        <Link to="about">About Us</Link>
-                    </li>
-                    {
-                        !session && (   
-                            <li className="navOption">
-                                <Link to={
-                                    {
-                                        pathname: "/auth/login?user=doctor",
-                                    }
-                                }
-                                >
-                                    Consulto doctors
-                                </Link>
-                            </li>
-                        )
-                    }
-                    {
-                        (session?.userType === "patient" || !session) && (
-                            <li className="navOption apt">
-                                <Link 
-                                    to={{ 
-                                        pathname: `${ session?.auth ? "/patient/create-appointment": "/auth/login?user=patient"}`,
-                                    }}
-                                >Book an appointment</Link>
-                            </li>
-                        )
-                    }
-                    {
-                        session?.auth ? <Dropdown/> : (
-                            <li className="navOption">
-                                <Link to="/auth/signup?user=patient" className="btn">Sign up</Link>
-                            </li>
-                        )
-                    }
-                </ul>
+
+                {
+                    isMobile ? <MobileNavbar/> :  <DesktopNavbar />
+                }
             </nav>
         </header>
     )

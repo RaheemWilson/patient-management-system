@@ -65,7 +65,9 @@ function DoctorAppointments(props) {
                             pastAppointments.length > 0 ? (
                                 pastAppointments.map((appointment, index) => {
                                     return (
-                                        <DoctorAppointment details={appointment} time={"past"} key={index}/>
+                                        appointment?.patient?.firstName ? (
+                                            <DoctorAppointment details={appointment} time={"past"} key={index}/>
+                                        ) : null
                                     )
                                 })
                             ) : (

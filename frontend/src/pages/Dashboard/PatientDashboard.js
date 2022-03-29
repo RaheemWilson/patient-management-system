@@ -14,16 +14,15 @@ export default function Dashboard() {
     const [appointments, setAppointments] = useState(null)
     const firstName = session.user.firstName
 
-    
-
     let today = new Date()
     let todayStr = today.toLocaleString('en-US', dateOptions)
 
     useEffect(() => {
-       getAppointments(session?.authToken)
-        .then(res => {
-            setAppointments([...res.appointments])
-       })
+        let isMounted = true; 
+        getAppointments(session?.authToken).then(res => {
+            if (isMounted) setAppointments([...res.appointments]);
+        })
+        return () => { isMounted = false };
     }, [])
 
     if(!appointments){

@@ -26,9 +26,12 @@ function PatientAppointments({ appointments }) {
                     {
                         upcomingAppointments.length > 0 ? (
                             upcomingAppointments.map((appointment, index) => {
-                                return (
-                                    <PatientAppointment details={appointment} time={"upcoming"} key={index}/>
-                            )})
+                                    return (
+                                        appointment?.doctor?.firstName ? (
+                                            <PatientAppointment details={appointment} time={"upcoming"} key={index}/>
+                                        ) : null
+                                    )
+                            })
                         ) : (
                             <div className="empty-appointment">
                                 You have no upcoming appointments as of today. 

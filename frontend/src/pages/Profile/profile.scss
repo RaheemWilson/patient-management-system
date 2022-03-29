@@ -31,6 +31,14 @@
 .form{
     @include g.form;
 
+    input, select{
+        width: 100%;
+    }
+
+    textarea{
+        height: 72px;
+    }
+
     .inline{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -64,4 +72,11 @@
         padding: 12px 28px;
         cursor: pointer;
     }
+}
+
+.modal-options{
+    margin: 1rem 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }

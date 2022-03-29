@@ -10,6 +10,7 @@ function SignupForm({ isPatient }) {
     const [passwordCheck, setPasswordCheck] = useState(false)
     const [openModal, setOpenModal] = useState(false)
     const [id, setId] = useState(null)
+    const [emailSent, setEmailSent] = useState(false)
     const [error, setError] = useState(false)
     const {
         register,
@@ -19,10 +20,12 @@ function SignupForm({ isPatient }) {
 
     const navigate = useNavigate()
 
+
     const onSubmit =  async (data) => {
         if(data.password !== data.cpassword){
+            setPasswordCheck(true)
             setTimeout(() => {
-                setPasswordCheck(true)
+                setPasswordCheck(false)
             }, 4000);
         } else {
             if(isPatient){
@@ -30,14 +33,18 @@ function SignupForm({ isPatient }) {
                 if(res){
                     navigate("/auth/login?user=patient")
                 } else {
+                    setError(true)
                     setTimeout(() => {
-                        setError(true)
+                        setError(false)
                     }, 4000);
                 }
             } else {
                 let res = await createDoctor(data)
         
                 if(res){
+                    if(res.email.length > 0){
+                        setEmailSent(true)
+                    }
                     setId(res.doctorId)
                     setOpenModal(true)
                 } else {
@@ -65,7 +72,14 @@ function SignupForm({ isPatient }) {
                 withCloseButton={true}
             >
                 <div className='modal'>
-                    <p>For subsequent login in purposes you will be required to use your assigned ID Number</p>
+                    <p>
+                        For subsequent login in purposes you will be required to use your assigned ID Number.
+                    </p>
+                    <p>
+                        {
+                            emailSent ? "Check your email for your login details" : ""
+                        }
+                    </p>
                     <p>ID Number is <strong>{id}</strong>.</p>
                     <div>
                         <Button 

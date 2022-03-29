@@ -5,7 +5,6 @@ import { updateProfile } from "../../util/api/patient"
 
 function EditProfile() {
     const { session, setSession } = useContext(SessionContext)
-    // const [userDetails, setUserDetails] = useState({...session?.user})
     const {
         register,
         handleSubmit,
@@ -113,6 +112,12 @@ function EditProfile() {
                         } 
                     />
                     {errors?.age?.type === "required" && <p>This field is required.</p>}
+                </div>
+
+                <div>
+                    <label>Address</label>
+                    <textarea {...register('address', { required: true})} />
+                    {errors?.address?.type === "required" && <p>This field is required.</p>}
                 </div>
                 
                 <div  className='inline'>

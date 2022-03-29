@@ -17,11 +17,11 @@ function DoctorDashboard(props) {
     let todayStr = today.toLocaleString('en-US', dateOptions)
 
     useEffect(() => {
-       getAppointments(session?.authToken)
-        .then(res => {
-           console.log(res)
-            setAppointments([...res.appointments])
-       })
+        let isMounted = true
+        getAppointments(session?.authToken).then(res => {
+            if (isMounted) setAppointments([...res.appointments])
+        })
+        return () => { isMounted = false };
     }, [])
 
     if(!appointments){

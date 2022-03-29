@@ -29,6 +29,7 @@ function LoginForm({ isPatient }) {
                 icon: <Check size={20}/>,
                 color: "teal"
             })
+            localStorage.setItem("authToken", res.authToken)
             setSession({...res, auth: true})
             if(res.userType === "patient")
                 navigate(`${res.user.isUpdated? "/patient/dashboard" : "/patient/profile"}`)

@@ -7,7 +7,7 @@ import BadgeComponent from '../Badge/Badge';
 
 function PatientAppointment({ details, time }) {
     const [opened, setOpened] = useState();
-    const doctorsName = [details.doctor.firstName, details.doctor.lastName].join(" ")
+    const doctorsName = [details?.doctor?.firstName, details?.doctor?.lastName].join(" ")
     const appointmentDate = new Date(details.dateTime).toLocaleString('en-US', {...dateOptions, 
         hour: 'numeric', 
         minute: 'numeric',
