@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { createDoctor } from '../../util/api/doctor';
 import { createPatient } from '../../util/api/patient';
 import { Modal, Button } from '@mantine/core';
+import { useNotifications } from '@mantine/notifications';
+import { Check } from 'tabler-icons-react';
 
 function SignupForm({ isPatient }) {
     const [passwordCheck, setPasswordCheck] = useState(false)
@@ -19,6 +21,7 @@ function SignupForm({ isPatient }) {
     } = useForm({ defaultValues: { isPatient: isPatient }});
 
     const navigate = useNavigate()
+    const notifications = useNotifications();
 
 
     const onSubmit =  async (data) => {
@@ -31,6 +34,11 @@ function SignupForm({ isPatient }) {
             if(isPatient){
                 let res = await createPatient(data)
                 if(res){
+                    notifications.showNotification({
+                        message: "You have successfully created your account!",
+                        icon: <Check size={20}/>,
+                        color: "teal"
+                    })
                     navigate("/auth/login?user=patient")
                 } else {
                     setError(true)

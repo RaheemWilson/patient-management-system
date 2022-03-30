@@ -36,21 +36,27 @@ function MobileNavbar() {
                 size="xl"
                 radius="xs"
             >
-                <Menu.Label>
-                    <Avatar 
-                        src={null} 
-                        alt={name} 
-                        color="blue"
-                        className="avatar"
-                        size="md"
-                    >{initials} 
-                    </Avatar>
-                    <span>
-                        Signed in as <strong>{session?.user?.email}</strong>
-                    </span>
-                </Menu.Label>
+                {
+                    session?.auth && (
+                        <>
+                            <Menu.Label>
+                                <Avatar 
+                                    src={null} 
+                                    alt={name} 
+                                    color="blue"
+                                    className="avatar"
+                                    size="md"
+                                >{initials} 
+                                </Avatar>
+                                <span>
+                                    Signed in as <strong>{session?.user?.email}</strong>
+                                </span>
+                            </Menu.Label>
 
-                <Divider my="sm" />
+                            <Divider my="sm" />
+                        </>
+                    )
+                }
                 
                 {
                     session?.auth ? (
@@ -78,7 +84,7 @@ function MobileNavbar() {
                             to="/auth/login?user=doctor"
                             onClick={() => setOpened((o) => !o)}
                         >
-                            About us
+                            Consulto doctors
                         </Menu.Item>
                     )
                 }
