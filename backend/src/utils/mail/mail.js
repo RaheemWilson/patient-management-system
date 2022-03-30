@@ -1,7 +1,7 @@
 require('dotenv').config()
 const { transporter } = require("./transporter.js");
 
-function successfulSignup(email, randomId, name){
+exports.successfulSignup = function(email, randomId, name){
 
     let options = {
         from: process.env.MAIL_ADDRESS,
@@ -29,7 +29,7 @@ function successfulSignup(email, randomId, name){
 }
 
 
-function acceptAppointment( email, appointment){
+exports.acceptAppointment = function( email, appointment){
     let options = {
         from: process.env.MAIL_ADDRESS,
         to: email, 
@@ -59,7 +59,7 @@ function acceptAppointment( email, appointment){
     return ''
 }
 
-function declineAppointment( email, appointment){
+exports.declineAppointment = function( email, appointment){
     let options = {
         from: process.env.MAIL_ADDRESS,
         to: email, 
@@ -87,10 +87,4 @@ function declineAppointment( email, appointment){
     });
 
     return ''
-}
-
-module.exports = {
-    successfulSignup,
-    acceptAppointment,
-    declineAppointment
 }

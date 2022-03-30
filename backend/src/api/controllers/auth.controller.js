@@ -129,6 +129,7 @@ exports.createDoctor = (req, res) => {
                 })
 
                 let emailRes = mailer.successfulSignup(email, randomId, lastName)
+                console.log(emailRes)
                 res.status(201).json({ message: "Created sucessfully", doctorId: randomId, email : emailRes })
             }
         })
