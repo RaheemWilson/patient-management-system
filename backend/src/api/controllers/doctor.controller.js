@@ -1,4 +1,4 @@
-const { Doctor } = require("../../db/models/Doctor.js")
+const Doctor  = require("../../db/models/Doctor.js")
 
 /**
  * Get doctors in the system

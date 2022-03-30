@@ -1,6 +1,6 @@
-const { Auth } = require("../../db/models/Auth.js")
-const { Doctor } = require("../../db/models/Doctor.js")
-const { Patient } = require("../../db/models/Patient.js")
+const  Auth = require("../../db/models/Auth.js")
+const  Doctor = require("../../db/models/Doctor.js")
+const  Patient = require("../../db/models/Patient.js")
 
 /**
  * Get user in the system

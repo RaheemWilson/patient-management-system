@@ -1,4 +1,4 @@
-const { Appointment } = require("../../db/models/Appointment.js")
+const  Appointment  = require("../../db/models/Appointment.js")
 const mailer = require("../../utils/mail/mail.js")
 
 /**

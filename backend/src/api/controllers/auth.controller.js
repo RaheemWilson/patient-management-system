@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 const  { compare } = require("bcrypt")
-const { Auth } = require( "../../db/models/Auth.js")
-const { Doctor } = require( "../../db/models/Doctor.js")
-const { Patient } = require( "../../db/models/Patient.js")
+const  Auth = require( "../../db/models/Auth.js")
+const  Doctor = require( "../../db/models/Doctor.js")
+const  Patient = require( "../../db/models/Patient.js")
 const mailer = require("../../utils/mail/mail.js")
 const jwtUtil = require('../../utils/jwt.js')
 
@@ -45,6 +45,7 @@ exports.createPatient = (req, res) => {
             }
         })
     } catch (error) {
+        console.log(error)
         res.sendStatus(500);
     }
 }
