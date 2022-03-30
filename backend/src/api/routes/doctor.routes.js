@@ -1,11 +1,12 @@
-import express from 'express';
-import jwtCheck from '../../middleware/validateToken.js';
-import { getDoctors } from '../controllers/doctor.controller.js';
+const express = require('express');
+const jwtCheck = require('../../middleware/validateToken.js');
+const doctorController = require('../controllers/doctor.controller.js');
 
 const router = express.Router()
 
 // Use middleware to authorize request
 router.use(jwtCheck)
 
-router.get("/", getDoctors)
-export default router;
+router.get("/", doctorController.getDoctors)
+
+module.exports = router

@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import { compare } from "bcrypt"
-import Auth from "../../db/models/Auth.js"
-import Doctor from "../../db/models/Doctor.js"
-import Patient from "../../db/models/Patient.js"
+const { Auth } = require( "../../db/models/Auth.js")
+const { Doctor } = require( "../../db/models/Doctor.js")
+const { Patient } = require( "../../db/models/Patient.js")
 const mailer = require("../../utils/mail/mail.js")
 const jwtUtil = require('../../utils/jwt.js')
 
@@ -12,7 +12,7 @@ const jwtUtil = require('../../utils/jwt.js')
  * @param {*} req 
  * @param {*} res 
  */
-export const createPatient = (req, res) => {
+exports.createPatient = (req, res) => {
 
     try {
         let {
@@ -56,7 +56,7 @@ export const createPatient = (req, res) => {
  * @param {*} res 
  * @returns Patient details
  */
-export const loginPatient = async (req, res) => {
+exports.loginPatient = async (req, res) => {
 
     try {
         let { email, password } = req.body;
@@ -92,7 +92,7 @@ export const loginPatient = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-export const createDoctor = (req, res) => {
+exports.createDoctor = (req, res) => {
     
     try {
         let {
@@ -143,7 +143,7 @@ export const createDoctor = (req, res) => {
  * @param {*} res 
  * @returns Doctors details
  */
-export const loginDoctor = async (req, res) => {
+exports.loginDoctor = async (req, res) => {
 
     try {
         let { doctorId, password } = req.body;

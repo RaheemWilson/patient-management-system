@@ -1,11 +1,11 @@
-import Doctor from "../../db/models/Doctor.js"
+const { Doctor } = require("../../db/models/Doctor.js")
 
 /**
  * Get doctors in the system
  * @param {*} req 
  * @param {*} res 
  */
- export const getDoctors = async (req, res) => {
+exports.getDoctors = async (req, res) => {
     try {
 
         Doctor.find({}, (err, doc) => {

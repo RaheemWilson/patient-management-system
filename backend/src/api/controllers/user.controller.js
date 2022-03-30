@@ -1,13 +1,13 @@
-import Auth from "../../db/models/Auth.js"
-import Doctor from "../../db/models/Doctor.js"
-import Patient from "../../db/models/Patient.js"
+const { Auth } = require("../../db/models/Auth.js")
+const { Doctor } = require("../../db/models/Doctor.js")
+const { Patient } = require("../../db/models/Patient.js")
 
 /**
  * Get user in the system
  * @param {*} req 
  * @param {*} res 
  */
- export const getUser = async (req, res) => {
+exports.getUser = async (req, res) => {
     try {
         let id = req.user_session._id
         let type = req.user_session.userType
@@ -40,7 +40,7 @@ import Patient from "../../db/models/Patient.js"
  * @param {*} req 
  * @param {*} res 
  */
- export const deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res) => {
     try {
         let id = req.user_session._id
         Auth.findOneAndDelete({ user: id }, (err, doc) => {

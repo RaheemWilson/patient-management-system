@@ -1,4 +1,4 @@
-import Appointment from "../../db/models/Appointment.js"
+const { Appointment } = require("../../db/models/Appointment.js")
 const mailer = require("../../utils/mail/mail.js")
 
 /**
@@ -6,7 +6,7 @@ const mailer = require("../../utils/mail/mail.js")
  * @param {*} req 
  * @param {*} res 
  */
-export const createAppointment = async (req, res) => {
+exports.createAppointment = async (req, res) => {
     try {
         let patientId = req.user_session._id
 
@@ -28,7 +28,7 @@ export const createAppointment = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-export const getAppointments = async (req, res) => {
+exports.getAppointments = async (req, res) => {
     try {
         let id = req.user_session._id
         let user = req.user_session.userType
@@ -66,7 +66,7 @@ export const getAppointments = async (req, res) => {
 }
 
 
-export const updateAppointment = (req, res) => {
+exports.updateAppointment = (req, res) => {
     try {
         let appointmentId = req.params.id
         let id = req.user_session._id

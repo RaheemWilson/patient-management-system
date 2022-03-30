@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import Auth from '../db/models/Auth.js';
+const { Auth } = require('../db/models/Auth.js');
 const jwtUtil = require('./../utils/jwt.js')
 
 /**
@@ -37,4 +37,4 @@ const jwtCheck = (req, res, next) => {
     }
 }
 
-export default jwtCheck;
+module.exports = jwtCheck;

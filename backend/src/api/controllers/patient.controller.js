@@ -7,7 +7,7 @@ const { default: Patient } = require("../../db/models/Patient.js")
  * @param {*} res 
  * @returns Update profile information
  */
-export const updateProfile = (req, res) => {
+exports.updateProfile = (req, res) => {
 
     try {
         let userId = req.params.id
@@ -36,7 +36,7 @@ export const updateProfile = (req, res) => {
  * @param {*} res 
  * @returns Successfully deleted message
  */
-export const deleteAccount = (req, res) => {
+exports.deleteAccount = (req, res) => {
     try {
         let id = req.params.id
 

@@ -6,10 +6,10 @@ import mongoose from "mongoose";
 import "dotenv/config";
 
 // Route Imports
-import authRoutes from './api/routes/auth.routes.js'
-import patientRoutes from './api/routes/patient.routes.js'
-import doctorRoutes from './api/routes/doctor.routes.js'
-import userRoutes from './api/routes/user.routes.js'
+const { authRoutes } = require('./api/routes/auth.routes.js')
+const { patientRoutes } = require('./api/routes/patient.routes.js')
+const { doctorRoutes } = require('./api/routes/doctor.routes.js')
+const { userRoutes } = require('./api/routes/user.routes.js')
 
 const app = express();
 

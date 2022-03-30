@@ -69,4 +69,4 @@ PatientSchema.pre("save", async function () {
 
 const Patient = mongoose.model("patients", PatientSchema)
 
-export default Patient;
+module.exports = Patient;
