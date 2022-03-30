@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { compare } from "bcrypt"
+const  { compare } = require("bcrypt")
 const { Auth } = require( "../../db/models/Auth.js")
 const { Doctor } = require( "../../db/models/Doctor.js")
 const { Patient } = require( "../../db/models/Patient.js")
