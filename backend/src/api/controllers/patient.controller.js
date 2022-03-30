@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const { default: Patient } = require("../../db/models/Patient")
+const { default: Patient } = require("../../db/models/Patient.js")
 
 /**
  * Updates Patient's profile details

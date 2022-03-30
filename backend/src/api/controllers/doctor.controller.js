@@ -1,4 +1,4 @@
-import Doctor from "../../db/models/Doctor"
+import Doctor from "../../db/models/Doctor.js"
 
 /**
  * Get doctors in the system

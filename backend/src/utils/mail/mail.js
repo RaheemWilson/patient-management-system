@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { transporter } from "./transporter";
+import { transporter } from "./transporter.js";
 
 function successfulSignup(email, randomId, name){
 

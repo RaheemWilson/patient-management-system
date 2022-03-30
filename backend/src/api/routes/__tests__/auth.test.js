@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
-import app from '../../../app'
+import app from '../../../app.js'
 import mongoose from "mongoose";
 import supertest from "supertest";
-import { generateDoctorsData, generatePatientsData } from "../../../../tests/generate";
-import mailer from '../../../utils/mail/mail'
+import { generateDoctorsData, generatePatientsData } from "../../../../tests/generate.js";
+import mailer from '../../../utils/mail/mail.js'
 
 let patients = []
 let doctors = []

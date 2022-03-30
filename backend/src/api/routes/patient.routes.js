@@ -1,7 +1,7 @@
 import express from 'express';
-import jwtCheck from '../../middleware/validateToken';
-import { createAppointment, getAppointments, updateAppointment } from '../controllers/appointment.controller';
-import { updateProfile, deleteAccount } from '../controllers/patient.controller';
+import jwtCheck from '../../middleware/validateToken.js';
+import { createAppointment, getAppointments, updateAppointment } from '../controllers/appointment.controller.js';
+import { updateProfile, deleteAccount } from '../controllers/patient.controller.js';
 
 const router = express.Router()
 

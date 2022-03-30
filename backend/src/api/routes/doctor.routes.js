@@ -1,6 +1,6 @@
 import express from 'express';
-import jwtCheck from '../../middleware/validateToken';
-import { getDoctors } from '../controllers/doctor.controller';
+import jwtCheck from '../../middleware/validateToken.js';
+import { getDoctors } from '../controllers/doctor.controller.js';
 
 const router = express.Router()
 

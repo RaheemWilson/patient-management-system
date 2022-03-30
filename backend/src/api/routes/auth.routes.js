@@ -4,7 +4,7 @@ import {
     createPatient, 
     loginDoctor, 
     loginPatient 
-} from '../controllers/auth.controller';
+} from '../controllers/auth.controller.js';
 
 const router = express.Router()
 

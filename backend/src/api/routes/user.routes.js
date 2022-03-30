@@ -1,6 +1,6 @@
 import express from 'express';
-import jwtCheck from '../../middleware/validateToken';
-import { deleteUser, getUser } from '../controllers/user.controller';
+import jwtCheck from '../../middleware/validateToken.js';
+import { deleteUser, getUser } from '../controllers/user.controller.js';
 
 const router = express.Router()
 

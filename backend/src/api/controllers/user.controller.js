@@ -1,6 +1,6 @@
-import Auth from "../../db/models/Auth"
-import Doctor from "../../db/models/Doctor"
-import Patient from "../../db/models/Patient"
+import Auth from "../../db/models/Auth.js"
+import Doctor from "../../db/models/Doctor.js"
+import Patient from "../../db/models/Patient.js"
 
 /**
  * Get user in the system
