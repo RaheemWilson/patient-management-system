@@ -18,6 +18,7 @@ import About from "./pages/About/About";
 import { useEffect, useContext } from "react";
 import SessionContext from "./provider/SessionContext";
 import { getUser } from "./util/api/user";
+import NotFound from './pages/NotFound/NotFound'
 
 function App() {
   const { setSession } = useContext(SessionContext)
@@ -58,6 +59,7 @@ function App() {
             <Route path="login" element={<Login/>}/>
           </Route>
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
   );
 }

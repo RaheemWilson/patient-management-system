@@ -1,0 +1,33 @@
+@use '../../util/styles/global' as g;
+.notfound-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+
+    h1, a{
+        color: g.$light-blue;
+    }
+
+    p, h1{
+        margin: 12px 0;
+    }
+
+    .help-links{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    a{
+        text-decoration: underline;
+    }
+
+    img{
+        width: 90%;
+        height: 90%;
+    }
+
+}

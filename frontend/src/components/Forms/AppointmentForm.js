@@ -78,7 +78,7 @@ function AppointmentForm() {
                     <label htmlFor="dateTime">Date and Time of Appointment</label>
                     <input 
                         type="datetime-local" 
-                        min={new Date()}
+                        min={new Date().toJSON()}
                         {
                             ...register('dateTime', { 
                                 required: true, 
