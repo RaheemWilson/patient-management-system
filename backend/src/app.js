@@ -3,13 +3,13 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-import "dotenv/config";
+require('dotenv').config()
 
 // Route Imports
-const { authRoutes } = require('./api/routes/auth.routes.js')
-const { patientRoutes } = require('./api/routes/patient.routes.js')
-const { doctorRoutes } = require('./api/routes/doctor.routes.js')
-const { userRoutes } = require('./api/routes/user.routes.js')
+const  authRoutes = require('./api/routes/auth.routes.js')
+const  patientRoutes = require('./api/routes/patient.routes.js')
+const  doctorRoutes = require('./api/routes/doctor.routes.js')
+const  userRoutes = require('./api/routes/user.routes.js')
 
 const app = express();
 

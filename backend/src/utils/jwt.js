@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+require('dotenv').config()
 
 const secret = process.env.SECRET_KEY || "Damn, that's what 19##*@( expected"
 
