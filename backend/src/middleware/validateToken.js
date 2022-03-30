@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const { Auth } = require('../db/models/Auth.js');
+const Auth = require('../db/models/Auth.js');
 const jwtUtil = require('./../utils/jwt.js')
 
 /**
