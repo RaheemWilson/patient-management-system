@@ -78,6 +78,7 @@ function AppointmentForm() {
                     <label htmlFor="dateTime">Date and Time of Appointment</label>
                     <input 
                         type="datetime-local" 
+                        min={new Date()}
                         {
                             ...register('dateTime', { 
                                 required: true, 
