@@ -8,6 +8,7 @@ app.get("/", (req, res, next) => {
   res.json({ message: "from backend api" });
 });
 
+//App listens on port
 app.listen(PORT, () => {
   console.log(`Server is running`);
 });
