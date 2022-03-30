@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 // Module Imports
-import express from "express";
-import cors from "cors";
-import mongoose from "mongoose";
+const express = require('express')
+const cors = require('cors')
+const mongoose = require("mongoose")
 require('dotenv').config()
 
 // Route Imports
