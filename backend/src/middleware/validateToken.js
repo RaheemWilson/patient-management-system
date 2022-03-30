@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import Auth from '../db/models/Auth.js';
-import jwtUtil from './../utils/jwt.js'
+const jwtUtil = require('./../utils/jwt.js')
 
 /**
  * This function is used to check if a jwt is valid (if send) as well as decode it
