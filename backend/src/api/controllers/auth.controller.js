@@ -3,7 +3,7 @@ import { compare } from "bcrypt"
 import Auth from "../../db/models/Auth.js"
 import Doctor from "../../db/models/Doctor.js"
 import Patient from "../../db/models/Patient.js"
-import mailer from '../../utils/mail/mail.js'
+const mailer = require("../../utils/mail/mail.js")
 const jwtUtil = require('../../utils/jwt.js')
 
 

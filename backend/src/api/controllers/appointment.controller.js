@@ -1,5 +1,5 @@
 import Appointment from "../../db/models/Appointment.js"
-import mailer from "../../utils/mail/mail.js"
+const mailer = require("../../utils/mail/mail.js")
 
 /**
  * Creates an appointment
