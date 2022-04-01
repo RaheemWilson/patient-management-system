@@ -15,6 +15,7 @@ function DeleteAccount() {
         let res = await deleteAccount(session.user._id, session.authToken)
         if(res){
             setSession(null)
+            localStorage.removeItem("authToken")
             navigate("/")
         } else {
             setOpened(false)

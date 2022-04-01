@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const Patient = require("../../db/models/Patient.js")
+const Auth = require("../../db/models/Auth.js")
 
 /**
  * Updates Patient's profile details
@@ -45,11 +46,19 @@ exports.deleteAccount = (req, res) => {
             if(err){
                 res.status(400).json({ message: err })
             } else if(doc){
-                res.status(200).json({ message: "Deleted successfully"})
-            } else {
-                res.status(404).json({ message: "User not found"})
+                Auth.findOneAndDelete({ user: id }, (err, doc) => {
+                    if(err){
+                        res.status(400).json({ message: err })
+                    } else if(doc){
+                        res.status(200).json({ message: "Deleted successfully"})
+                    } else {
+                        res.status(404).json({ message: "User not found"})
+                    }
+                })
             }
         })
+
+
 
     } catch (error) {
         return res.status(500).json({message: error})
